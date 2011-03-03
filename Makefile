@@ -23,7 +23,7 @@ dist:
 	@@cat $(JS_DIR)/jquery-1.4.3.min.js  $(JS_DIR)/jquery.nivo.slider.pack.js $(JS_DIR)/slide.js > $(DIST_DIR)/js/scripts.js
 
 	@@echo Copying HTML files...
-	@@cp $(SRC_DIR)/*.html $(DIST_DIR)/
+	@@./preprocess.sh
 	
 	@@echo Done.
 
