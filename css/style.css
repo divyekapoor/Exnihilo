@@ -1,0 +1,39 @@
+div#header {
+    width:100%;
+    height:300px;
+    background-color:blue;
+}
+
+div#content {
+    width:1000px;
+    margin:0 auto;
+    min-height:500px;
+    background-color:yellow;
+}
+
+div#sidebar {
+    width:230px;
+    min-height:500px;
+    background-color:green;
+    float:left;
+    position:relative; /* Create a new positioning context */
+}
+
+div#main {
+    margin-left:20px;
+    min-height:300px;
+    background-color:orange;
+}
+
+div#footer {
+    position:relative;
+    top:-50px;
+    height:50px;
+    width:1000px;
+    background-color:black;
+    opacity:.75;
+    margin:0 auto;
+    text-align:center;
+    
+    color:white;
+}
