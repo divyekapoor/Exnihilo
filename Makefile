@@ -24,6 +24,7 @@ debug:
 	cp -r $(SRC_IMAGES) $(DEBUG_IMAGES)
 	cp -r $(SRC_JS) $(DEBUG_JS)
 	./preprocess.sh $(DEBUG_DIR) -DDEBUG
+	gnome-open $(DEBUG_DIR)/index.html
 
 dist: 
 	@@echo Creating $(DIST_DIR) $(DIST_CSS) $(DIST_JS)
