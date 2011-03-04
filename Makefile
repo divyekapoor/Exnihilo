@@ -31,7 +31,7 @@ dist:
 	@@cat $(JS_DIR)/jquery-1.4.3.min.js  $(JS_DIR)/jquery.nivo.slider.pack.js $(JS_DIR)/slide.js > $(DIST_DIR)/js/scripts.js
 	@@yui-compressor --type js --nomunge $(DIST_DIR)/js/scripts.js -o $(DIST_DIR)/js/scripts.min.js
 	
-	@@echo Copying HTML files...
+	@@echo Preprocessing and copying HTML files...
 	@@./preprocess.sh
 	
 	@@echo Done.
