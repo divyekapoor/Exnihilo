@@ -53,7 +53,11 @@ dist:
 	@@echo Done.
 
 
+zip: dist
+	zip -9 -r exnihilo.zip dist
+
 clean:
 	rm -rf $(DIST_DIR)
 	rm -rf $(DEBUG_DIR)
+	rm -f exnihilo.zip
 
