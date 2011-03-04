@@ -24,7 +24,9 @@ debug:
 	cp -r $(SRC_IMAGES) $(DEBUG_IMAGES)
 	cp -r $(SRC_JS) $(DEBUG_JS)
 	./preprocess.sh $(DEBUG_DIR) -DDEBUG
-	gnome-open $(DEBUG_DIR)/index.html
+
+runserver: debug
+	xterm -e '/usr/bin/env python -m CGIHTTPServer' &
 
 dist: 
 	@@echo Creating $(DIST_DIR) $(DIST_CSS) $(DIST_JS)
@@ -38,7 +40,7 @@ dist:
 	@@echo Operating less.js on .less files
 	@@$(BIN_DIR)/lessc $(SRC_CSS)/style.less > $(DIST_CSS)/style.less.css
 	@@echo Creating unified and minified CSS in $(DIST_CSS)/style.min.css
-	@@cat $(CSS_DIR)/reset.css $(CSS_DIR)/nivo-slider.css $(CSS_DIR)/slide.css $(DIST_CSS)/style.less.css > $(DIST_CSS)/style.css
+	@@cat $(SRC_CSS)/reset.css $(SRC_CSS)/nivo-slider.css $(SRC_CSS)/slide.css $(DIST_CSS)/style.less.css > $(DIST_CSS)/style.css
 	@@yui-compressor --type css $(DIST_DIR)/css/style.css -o $(DIST_DIR)/css/style.min.css
 	
 	@echo Creating unified and minified JS in $(DIST_JS)/scripts.js
