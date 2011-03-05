@@ -23,7 +23,7 @@ debug:
 	cp -r $(SRC_CSS) $(DEBUG_CSS)
 	cp -r $(SRC_IMAGES) $(DEBUG_IMAGES)
 	cp -r $(SRC_JS) $(DEBUG_JS)
-	./preprocess.sh $(DEBUG_DIR) -DDEBUG
+	$(BIN_DIR)/preprocess.sh $(DEBUG_DIR) -DDEBUG
 
 runserver: debug
 	xterm -e '/usr/bin/env node serve.js' &
@@ -48,7 +48,7 @@ dist:
 	@@yui-compressor --type js --nomunge $(DIST_DIR)/js/scripts.js -o $(DIST_DIR)/js/scripts.min.js
 	
 	@@echo Preprocessing and copying HTML files...
-	@@./preprocess.sh $(DIST_DIR) -DRELEASE
+	@@$(BIN_DIR)/preprocess.sh $(DIST_DIR) -DRELEASE
 	
 	@@echo Done.
 
