@@ -509,13 +509,21 @@ div#footer-wrapper {
 @media screen and (min-width:600px) and (max-width:700px) {
     @pagewidth:600px;
     
-    div#toppanel {
-        font-size:10px;
+    div#toppanel div#login {
+        form {
+            label {
+                font-size:10px;
+            }
+            
+            .field {
+                width:80px;
+            }
+        }
     }
     
     div#wrapper {
-        .background-size(auto, 115px);
-        background-position:0 249px;
+        .background-size(auto, 88px);
+        background-position:0 186px;
         
         div#header {
             .background-size(@pagewidth, 0.453*@pagewidth);
@@ -582,13 +590,13 @@ div#footer-wrapper {
     
     div#footer-wrapper {
         .exact;
-        .background-size(auto, 129px);
-        height:141px;
+        .background-size(auto, 114px);
+        height:114px;
         
         div#footer {
-            .background-size(auto, 129px);
+            .background-size(@pagewidth, auto);
             width:@pagewidth;
-            height:129px;
+            height:102px;
             .autocenter;
         }
     }
