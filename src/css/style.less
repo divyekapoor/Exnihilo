@@ -88,7 +88,6 @@ div#toppanel {
     
     
     div#login {
-        // width:@pagewidth;
         height:@topheight;
         color:@gray;
         .exact;
@@ -288,7 +287,6 @@ div#wrapper {
             @paddingRight:40px;
             
             .exact;
-            // width:@pagewidth - @sidebarwidth - (@paddingLeft + @paddingRight);
             min-height:@contentheight;
             padding-left:@paddingLeft;
             padding-right:@paddingRight;
@@ -336,7 +334,7 @@ div#wrapper {
                 float:left;
                 width:@width - @rightMargin;
                 padding-right:@rightMargin;
-                min-height:274px;
+                // min-height:274px;
                 
                 p {
                     text-align:justify;
@@ -412,7 +410,7 @@ div#footer-wrapper {
     display:block;
     .exact;
     
-    background:url(../images/footer_x.jpg) 0 0 repeat-x; // 127px
+    background:url(../images/footer_x.jpg) 0 0 repeat-x;
     background-color:@bggray;
     div#footer {
         @pad:12px;
@@ -556,8 +554,24 @@ div#footer-wrapper {
                 div#about {
                     width:100%;
                     height:auto;
+                    display:block;
+                    float:none;
+                    
                     .contest_details, .contest_gallery {
                         display:none;
+                    }
+                }
+                
+                div#recent {
+                    .exact;
+                    border:none;
+                    margin-top:20px;
+                    margin-bottom:20px;
+                    display:block;
+                    float:none;
+                    div#recent-images-wrapper {
+                        width:550px;
+                        height:246px;
                     }
                 }
             }
