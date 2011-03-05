@@ -16,7 +16,7 @@ DIST_IMAGES=$(DIST_DIR)/images
 DIST_JS=$(DIST_DIR)/js
 
 
-.PHONY: dist debug clean
+.PHONY: dist debug clean all
 
 debug:
 	mkdir -p $(DEBUG_DIR)
@@ -44,7 +44,7 @@ dist:
 	@@yui-compressor --type css $(DIST_DIR)/css/style.css -o $(DIST_DIR)/css/style.min.css
 	
 	@echo Creating unified and minified JS in $(DIST_JS)/scripts.js
-	@@cat $(SRC_JS)/jquery-1.4.3.min.js  $(SRC_JS)/jquery.nivo.slider.pack.js $(SRC_JS)/slide.js > $(DIST_JS)/scripts.js
+	@@cat $(SRC_JS)/jquery-1.4.3.min.js  $(SRC_JS)/jquery.nivo.slider.pack.js $(SRC_JS)/slide.js $(SRC_JS)/jquery.rating.pack.js > $(DIST_JS)/scripts.js
 	@@yui-compressor --type js --nomunge $(DIST_DIR)/js/scripts.js -o $(DIST_DIR)/js/scripts.min.js
 	
 	@@echo Preprocessing and copying HTML files...
@@ -55,6 +55,8 @@ dist:
 
 zip: dist
 	zip -9 -r exnihilo.zip dist
+
+all: debug dist zip
 
 clean:
 	rm -rf $(DIST_DIR)
