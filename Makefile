@@ -26,7 +26,7 @@ debug:
 	./preprocess.sh $(DEBUG_DIR) -DDEBUG
 
 runserver: debug
-	xterm -e '/usr/bin/env python -m CGIHTTPServer' &
+	xterm -e '/usr/bin/env node serve.js' &
 
 dist: 
 	@@echo Creating $(DIST_DIR) $(DIST_CSS) $(DIST_JS)
