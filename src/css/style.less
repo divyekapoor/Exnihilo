@@ -4,11 +4,12 @@
 @darkblue:#002D3E;
 @lightblue:#00506B;
 @tweetblue:#0091BF;
+@bggray:#DDDDDD;
 @green:#748933;
 @yellow:#E7A423;
 @topheight:38px;
 @pagewidth:1000px;
-@sidebarwidth:277px;
+@sidebarwidth:278px;
 @contentheight:690px;
 
 // Mixins
@@ -21,6 +22,10 @@
     margin:0 auto;
 }
 
+.clear {
+    clear:both;
+}
+
 .pseudolink {
     a {
         text-decoration:none;
@@ -30,6 +35,38 @@
     }
 }
 
+.background-size (@width, @height) {
+    background-size: @width @height !important;
+    -o-background-size: @width @height !important;
+    -moz-background-size: @width @height !important;
+    -webkit-background-size: @width @height !important;
+}
+
+// Nivo-Slider styles override
+.nivo-controlNav {
+	position:absolute;
+	right:10px;
+	top:-20px;
+}
+
+.nivo-controlNav a {
+	display:block;
+	width:22px;
+	height:22px;
+	background:url(../images/bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:3px;
+	float:left;
+}
+
+.nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+// --------------------------------------------------
+//    Main Styles
+// --------------------------------------------------
 body {
     font-family:Aller,"Trebuchet MS";
     font-size:12px;
@@ -40,25 +77,28 @@ div#toppanel {
     height:@topheight;
     width:100%;
     background-color:black;
+    display:block;
     
     
     div#login {
-        width:@pagewidth;
+        // width:@pagewidth;
         height:@topheight;
         color:@gray;
         .exact;
         .autocenter;
         
+        display:block;
+        
         .logo {
-            background-image:url(../images/logo.png);
+            background:url(../images/logo.png) no-repeat;
             text-indent:-9999px;
-            width:250px;
+            min-width:145px;
             height:@topheight;
             float:left;
         }
 
         form {
-            float:left;
+            float:right;
             
             
             .label {
@@ -80,6 +120,7 @@ div#toppanel {
                 width:55px;
                 height:20px;
                 border:none;
+                color:@lightgray;
             }        
             
             .login_button {
@@ -96,21 +137,27 @@ div#toppanel {
                     color:@lightgray;
                 }
             }
-        }        
+        }
+        
     }
 }
 
 div#wrapper {
     width:100%;
-    background-color:blue;
+    overflow:hidden;
+    background:url(../images/header_x.png) @bggray 0 309px repeat-x;
+    display:block;
+    margin-top:@topheight;
     
     div#header {
         .exact;
         .autocenter;
-        width:@pagewidth;
-        height:492px;
+        // width:@pagewidth;
+        // min-width:@pagewidth;
+        width:100%;
+        height:492px - 39px;
         position:relative;
-        background-color:teal;
+        background:url(../images/header.png) no-repeat center;
         
         #clouds, #moon, #sun, #stars, #daynight {
             display:none;
@@ -138,19 +185,22 @@ div#wrapper {
     
     div#content {
         .autocenter;
-        width:@pagewidth;
+        min-width:@pagewidth;
+        width:100%;
         min-height:@contentheight;
+        .autocenter;
         
         // Note: Apply faux repeat background for sidebar here.
         // This is the standard trick for a 2 column layout.
-        background-color:yellow;
+        background:url(../images/sidebar_y.jpg) 0 0 repeat-y;
+        background-color:@bggray;
         
         div#sidebar {
-            @sidebarpadding:41px;
+            @sidebarpadding:42px;
             
             width:@sidebarwidth - @sidebarpadding;
             min-height:500px;
-            background-color:green;
+            background-color:transparent;
             float:left;
             position:relative; // Establish a positioning context
             padding-left:@sidebarpadding;
@@ -158,6 +208,12 @@ div#wrapper {
             .nav {
                 .exact;
                 margin-top:31px;
+                
+                a {
+                    color:white;
+                }
+                
+                .pseudolink;
                 
                 .item {
                     .exact;
@@ -178,10 +234,18 @@ div#wrapper {
                     .blurb {
                         font-size:12px;
                     }
+                    
+                    dl:hover {
+                        color:@tweetblue;
+                    }
                 }
                 
                 .selected {
                     background-color:@lightblue;
+                    
+                    dl:hover {
+                        color:inherit;
+                    }
                 }
             }
             
@@ -220,11 +284,12 @@ div#wrapper {
             @paddingRight:40px;
             
             .exact;
-            width:@pagewidth - @sidebarwidth - (@paddingLeft + @paddingRight);
+            // width:@pagewidth - @sidebarwidth - (@paddingLeft + @paddingRight);
+            overflow:hidden;
             min-height:@contentheight;
-            margin-left:@paddingLeft;
-            margin-right:@paddingRight;
-            background-color:orange;
+            padding-left:@paddingLeft;
+            padding-right:@paddingRight;
+            background-color:white;
             float:left;
             
             .title {
@@ -239,6 +304,26 @@ div#wrapper {
             
             div#top5 {
                 min-height:327px;
+                position:relative;
+                div#top5-slider-wrapper {
+                    .autocenter;
+                    overflow:hidden;
+                    width:400px;
+                    height:100%;
+                }
+                div#top5-slider {
+                    .autocenter;
+                    width:100%;
+                    height:100%;
+                    overflow:hidden;
+                    
+                    img {
+                        .autocenter;
+                        width:100%;
+                        height:100%;
+                    }
+                }
+                
             }
             
             div#about {
@@ -298,20 +383,62 @@ div#wrapper {
             
         }
 
-    }
+    }    
+}
+
+div#footer-wrapper {
+    width:100%;
+    display:block;
+    .exact;
     
+    background:url(../images/footer_x.jpg) 0 0 repeat-x; // 127px
+    background-color:@bggray;
     div#footer {
         @pad:12px;
         .autocenter;
         
         height:215px - @pad;
-        width:@pagewidth;
-        background-color:black;
-        opacity:.75;
+//        width:@pagewidth;
+        background:url(../images/footer.jpg) no-repeat;
         
         text-align:right;
         padding-top:12px;
         
         color:@gray;
     } 
+
+}
+
+
+
+@media screen and (max-width:1000px) {
+    div#header {
+        .background-size(100%, auto);
+    }
+    
+    div#footer {
+        .background-size(100%, auto);
+    }
+    
+    div#sidebar {
+    
+        width:100% !important;
+        display:block !important;
+        float:none !important;
+        margin: 0 0 !important;
+        padding: 0 0 !important;
+        
+        .item {
+            display:inline-block !important;
+            width:18%;
+            padding:10px 10px !important;
+            margin:0px 5px !important;
+            .title {
+                font-size:12px !important;
+            }           
+            .blurb {
+                display:none;
+            }
+        }
+    }
 }
