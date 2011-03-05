@@ -149,7 +149,7 @@ div#wrapper {
             @sidebarpadding:41px;
             
             width:@sidebarwidth - @sidebarpadding;
-            min-height:@contentheight; // 500px??
+            min-height:500px;
             background-color:green;
             float:left;
             position:relative; // Establish a positioning context
@@ -301,15 +301,17 @@ div#wrapper {
     }
     
     div#footer {
-        position:relative;
-        top:-50px;
-        height:50px;
-        width:1000px;
+        @pad:12px;
+        .autocenter;
+        
+        height:215px - @pad;
+        width:@pagewidth;
         background-color:black;
         opacity:.75;
-        margin:0 auto;
-        text-align:center;
         
-        color:white;
+        text-align:right;
+        padding-top:12px;
+        
+        color:@gray;
     } 
 }
