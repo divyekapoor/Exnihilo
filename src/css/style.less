@@ -1,39 +1,315 @@
-div#header {
+/* Variables: Colours and Constants */
+@gray:#A6A6A6;
+@lightgray:#2E2E2E;
+@darkblue:#002D3E;
+@lightblue:#00506B;
+@tweetblue:#0091BF;
+@green:#748933;
+@yellow:#E7A423;
+@topheight:38px;
+@pagewidth:1000px;
+@sidebarwidth:277px;
+@contentheight:690px;
+
+// Mixins
+.exact {
+    margin:0 0;
+    padding:0 0;
+}
+
+.autocenter {
+    margin:0 auto;
+}
+
+.pseudolink {
+    a {
+        text-decoration:none;
+        &:hover {
+            text-decoration:underline;
+        }
+    }
+}
+
+body {
+    font-family:Aller,"Trebuchet MS";
+    font-size:12px;
+}
+
+// CSS Structure
+div#toppanel {
+    height:@topheight;
     width:100%;
-    height:300px;
-    background-color:blue;
-}
-
-div#content {
-    width:1000px;
-    margin:0 auto;
-    min-height:500px;
-    background-color:yellow;
-}
-
-div#sidebar {
-    width:230px;
-    min-height:500px;
-    background-color:green;
-    float:left;
-    position:relative; /* Create a new positioning context */
-}
-
-div#main {
-    margin-left:20px;
-    min-height:300px;
-    background-color:orange;
-}
-
-div#footer {
-    position:relative;
-    top:-50px;
-    height:50px;
-    width:1000px;
     background-color:black;
-    opacity:.75;
-    margin:0 auto;
-    text-align:center;
     
-    color:white;
+    
+    div#login {
+        width:@pagewidth;
+        height:@topheight;
+        color:@gray;
+        .exact;
+        .autocenter;
+        
+        .logo {
+            background-image:url(../images/logo.png);
+            text-indent:-9999px;
+            width:250px;
+            height:@topheight;
+            float:left;
+        }
+
+        form {
+            float:left;
+            
+            
+            .label {
+                color:@gray;
+                font-size:14px;
+                margin-right:7px;
+            }
+        
+            .field {
+                background-color:@lightgray;
+                border:none;
+                width:132px;
+                height:21px;
+                margin-top:7px;
+                margin-bottom:7px;
+                margin-right:15px;
+            }
+            .button {
+                width:55px;
+                height:20px;
+                border:none;
+            }        
+            
+            .login_button {
+                background-image:url(../images/slide/bt_login.png);
+            }
+            
+            .register_button {
+                background-image:url(../images/slide/bt_register.png);
+            }
+            
+            a {
+                color:@gray;
+                &:hover {
+                    color:@lightgray;
+                }
+            }
+        }        
+    }
+}
+
+div#wrapper {
+    width:100%;
+    background-color:blue;
+    
+    div#header {
+        .exact;
+        .autocenter;
+        width:@pagewidth;
+        height:492px;
+        position:relative;
+        background-color:teal;
+        
+        #clouds, #moon, #sun, #stars, #daynight {
+            display:none;
+        }
+        
+        .join_club {
+            width:235px;
+            height:100px;
+            position:absolute;
+            left:42px;
+            top:350px;
+            
+            a.register {
+                background-image:url(../images/slide/bt_login.png);
+                text-indent:-9999px;
+                position:relative;
+                left:114px;
+                top:72px;
+                display:block;
+                height:20px;
+                width:105px;
+            }
+        }
+    }
+    
+    div#content {
+        .autocenter;
+        width:@pagewidth;
+        min-height:@contentheight;
+        
+        // Note: Apply faux repeat background for sidebar here.
+        // This is the standard trick for a 2 column layout.
+        background-color:yellow;
+        
+        div#sidebar {
+            @sidebarpadding:41px;
+            
+            width:@sidebarwidth - @sidebarpadding;
+            min-height:@contentheight; // 500px??
+            background-color:green;
+            float:left;
+            position:relative; // Establish a positioning context
+            padding-left:@sidebarpadding;
+            
+            .nav {
+                .exact;
+                margin-top:31px;
+                
+                .item {
+                    .exact;
+                    height:54px-10px;
+                    display:block;
+                    background-color:@darkblue;
+                    
+                    padding-left:16px;
+                    padding-right:16px;
+                    padding-top:10px;
+                    
+                    color:white;
+                    .title {
+                        font-size:16px;
+                        font-weight:bold;
+                    }
+                    
+                    .blurb {
+                        font-size:12px;
+                    }
+                }
+                
+                .selected {
+                    background-color:@lightblue;
+                }
+            }
+            
+            .tweet_wrapper {
+                .exact;
+                display:block;
+                height:270px;
+                width:100%;
+                background-image:url(../images/tweet.png);
+                position:relative;
+                
+                a {
+                    color:@tweetblue;
+                }
+                
+                @boxwidth:165px;
+                .title {
+                    font-weight:bold;
+                    position:absolute;
+                    left:34px;
+                    top:42px;
+                    width:@boxwidth;
+                }
+                .tweet {
+                    font-style:italic;
+                    width:@boxwidth;
+                    position:absolute;
+                    left:34px;
+                    top:65px;
+                }
+            }
+        }
+        
+        div#main {
+            @paddingLeft:20px;
+            @paddingRight:40px;
+            
+            .exact;
+            width:@pagewidth - @sidebarwidth - (@paddingLeft + @paddingRight);
+            min-height:@contentheight;
+            margin-left:@paddingLeft;
+            margin-right:@paddingRight;
+            background-color:orange;
+            float:left;
+            
+            .title {
+                font-size:18px;
+                text-transform:uppercase;
+                color:@gray;
+            }
+            
+            .emphasis {
+                font-weight:bold;
+            }
+            
+            div#top5 {
+                min-height:327px;
+            }
+            
+            div#about {
+                @rightMargin:23px;
+                @width:300px;
+                
+                .exact;
+                float:left;
+                width:@width - @rightMargin;
+                padding-right:@rightMargin;
+                min-height:274px;
+                
+                p {
+                    text-align:justify;
+                    color:@gray;
+                }
+                
+                .box {
+                    @height:25px;
+                    @pad:5px;
+                    width:135px;
+                    height:@height - 2*@pad;
+                    color:white;
+                    text-align:center;
+                    padding-top:@pad;
+                    padding-bottom:@pad;
+                    margin-top:12px;
+                                       
+                    .pseudolink;
+                    
+                    a {
+                        color:white;
+                    }                    
+                }
+                
+                .contest_details {
+                    .box;
+                    display:inline-block;
+                    background-color:@green;
+                }
+                
+                .contest_gallery {
+                    .box;
+                    display:inline-block;
+                    background-color:@yellow;
+                }
+            }
+            
+            div#recent {
+                float:left;
+                width:350px;
+                min-height:274px;
+                padding-left:9px;
+                border-left:solid 1px @gray;
+            }
+
+            
+        }
+
+    }
+    
+    div#footer {
+        position:relative;
+        top:-50px;
+        height:50px;
+        width:1000px;
+        background-color:black;
+        opacity:.75;
+        margin:0 auto;
+        text-align:center;
+        
+        color:white;
+    } 
 }
