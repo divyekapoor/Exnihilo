@@ -176,24 +176,16 @@ div#wrapper {
         background:url(../images/header.png) no-repeat center;
         background-color:transparent;
         z-index:2;
-        
-        .join_club {
-            width:235px;
-            height:100px;
+                    
+        a.register {
+            background-image:url(../images/registernow.png);
+            text-indent:-9999px;
             position:absolute;
-            left:42px;
-            top:350px;
-            
-            a.register {
-                background-image:url(../images/registernow.png);
-                text-indent:-9999px;
-                position:relative;
-                left:114px;
-                top:72px;
-                display:block;
-                height:22px;
-                width:109px;
-            }
+            left:15.5%;
+            top:94%;
+            display:block;
+            height:22px;
+            width:109px;
         }
     }
     
@@ -457,6 +449,14 @@ div#footer-wrapper {
             height:363px;
             width:@pagewidth;
             display:block;
+            
+                
+            a.register {
+                width:70px;
+                height:15px;
+                .background-size(70px, auto);
+            }
+
         }
     
         div#content {
@@ -548,7 +548,7 @@ div#footer-wrapper {
             min-height:45.3%;
             height:0.453*@pagewidth;
             width:@pagewidth;
-            display:block;
+            display:block;            
         }
     
         div#content {
@@ -658,7 +658,7 @@ div#footer-wrapper {
             background-position:center;
             background-color:#111;
             
-            .join_club {
+            a.register {
                 display:none;
             }
         }
