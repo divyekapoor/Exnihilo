@@ -127,15 +127,15 @@ div#toppanel {
                 width:55px;
                 height:20px;
                 border:none;
-                color:@lightgray;
+                color:@gray;
+                background-image: url(../images/black_btn.png);
+                background-color:transparent;
             }        
             
             .login_button {
-                background-image:url(../images/slide/bt_login.png);
             }
             
             .register_button {
-                background-image:url(../images/slide/bt_register.png);
             }
             
             a {
@@ -176,14 +176,14 @@ div#wrapper {
             top:350px;
             
             a.register {
-                background-image:url(../images/slide/bt_login.png);
+                background-image:url(../images/registernow.png);
                 text-indent:-9999px;
                 position:relative;
                 left:114px;
                 top:72px;
                 display:block;
-                height:20px;
-                width:105px;
+                height:22px;
+                width:109px;
             }
         }
     }
@@ -202,7 +202,7 @@ div#wrapper {
             @sidebarpadding:42px;
             
             width:@sidebarwidth - @sidebarpadding;
-            min-height:500px;
+            min-height:500px; // troublesome rule. Try to remove
             background-color:transparent;
             float:left;
             position:relative; // Establish a positioning context
@@ -211,7 +211,7 @@ div#wrapper {
             .nav {
                 .exact;
                 margin-top:31px;
-                
+                background-color:@darkblue;
                 a {
                     color:white;
                 }
@@ -459,12 +459,11 @@ div#footer-wrapper {
                 background-color:white;
                 
                 .nav {
-                    margin-top:0;
-                    margin-left:1px;
-                    
+                    .exact;
                     .item {
                         display:inline-block;
                         width:@pagewidth/5 - 14px;
+                        margin:0 0;
                         height:20px;
                         padding:5px 5px;
                         text-align:center;
@@ -506,7 +505,7 @@ div#footer-wrapper {
     }
 }
 
-@media screen and (min-width:600px) and (max-width:700px) {
+@media screen and (min-width:601px) and (max-width:700px) {
     @pagewidth:600px;
     
     div#toppanel div#login {
@@ -599,5 +598,159 @@ div#footer-wrapper {
             height:102px;
             .autocenter;
         }
+    }
+}
+
+@navyellow:#F7C42B;
+@navbrown:#CB7600;
+
+@media screen and (max-width:600px) {
+    
+    body {
+        font-size:12px;
+    }
+    
+    div#toppanel {
+        .logo {
+        }
+        div#login {
+            form{
+                .label {
+                    display:none;
+                }
+                .field {
+                    display:none;
+                }
+            }
+        }
+    }
+    
+    div#wrapper {
+        margin-top:38px;
+        div#header {
+            width:100%;
+            height:80px;
+            background-image:url(../images/header-small.png);
+            .background-size(auto, 60px);
+            background-position:center;
+            background-color:#111;
+            
+            .join_club {
+                display:none;
+            }
+        }
+        
+        div#content {
+            width:100%;
+            .exact;
+            div#sidebar {
+                .exact;
+                width:100%;
+                min-height:20px;
+                height:auto;
+                display:block;
+                float:none;
+                background-color:white;
+                .nav {
+                    .exact;
+                    width:100%;
+                    display:block;
+                    background-color:#111;
+                    padding-bottom:5px;
+                    .item {
+                        overflow:hidden;
+                        .exact;
+                        text-align:center;
+                        position:relative;
+                        width:29%;
+                        min-height:45px;
+                        height:auto;
+                        padding:5px 5px;
+                        margin-top:5px;
+                        display:inline-block;
+                        .title {
+                            font-size:14px;
+                            margin: 0 auto;
+                            display:block;
+                        }
+                        
+                        .blurb {
+                            display:none;
+                        }
+                    }
+                    
+                    .selected {
+                    }
+                }
+                
+                .tweet_wrapper {
+                    display:none;
+                }
+            }
+            
+            div#main {
+                .exact;
+                min-height:0px;
+                div#top5 {
+                    padding:0 0;
+                    margin:10px 0 0 0;
+                    width:100%;
+                    height:100%;
+                    display:inline-block;
+                    
+                    div#top5-slider-wrapper {
+                        width:300px;
+                        height:175px;
+                    }
+                }
+                
+                div#about {
+                    .exact;
+                    width:94%;
+                    margin-top:10px;
+                    margin-bottom:10px;
+                    padding:0 5px;
+                    float:none;
+                    display:block;
+                    
+                    
+                    .contest_details {
+                        margin-left:10px;
+                    }
+                    
+                }
+                
+                div#recent {
+                    .exact;
+                    width:94%;
+                    min-height:0;
+                    height:225px;
+                    padding:0 5px;
+                    div#recent-images-wrapper {
+                        width:300px;
+                        height:175px;
+                    }
+                    
+                }
+            }
+        }
+    }
+    div#footer-wrapper {
+        .exact;
+        width:100%;
+        height:30px;
+        div#footer {
+            .exact;
+            width:100%;
+            height:30px;
+            background-image:none;
+        }
+    }
+}
+
+@media screen and (max-width:399px) {
+    div#wrapper div#content div#main div#about,
+    div#wrapper div#content div#main div#recent {
+        padding:0 0 0 2px;
     }
 }
