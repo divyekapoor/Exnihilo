@@ -77,6 +77,8 @@
 body {
     font-family:Aller,"Trebuchet MS";
     font-size:12px;
+    
+    background-color:@bggray;
 }
 
 // CSS Structure
@@ -152,9 +154,18 @@ div#toppanel {
 div#wrapper {
     width:100%;
     background:url(../images/header_x.png) @bggray 0 309px repeat-x;
+    background-color:transparent;
     display:block;
     margin-top:@topheight;
     position:relative;
+    
+    div#animation {
+        width:100%;
+        z-index:1;
+        height:312px;
+        overflow:hidden;
+        position:absolute;
+    }
     
     div#header {
         .exact;
@@ -163,10 +174,8 @@ div#wrapper {
         height:492px - 39px;
         position:relative;
         background:url(../images/header.png) no-repeat center;
-        
-        #clouds, #moon, #sun, #stars, #daynight {
-            display:none;
-        }
+        background-color:transparent;
+        z-index:2;
         
         .join_club {
             width:235px;
@@ -258,7 +267,9 @@ div#wrapper {
                 display:block;
                 height:270px;
                 width:100%;
-                background-image:url(../images/tweet.png);
+                background-image:url(../images/twitter.jpg);
+                background-repeat:no-repeat;
+                background-position:0 15px;
                 position:relative;
                 
                 a {
@@ -436,6 +447,10 @@ div#footer-wrapper {
         .background-size(auto, 115px);
         background-position:0 249px;
         
+        div#animation {
+            height:250px;
+        }
+        
         div#header {
             .background-size(@pagewidth, 363px);
             min-height:45.3%;
@@ -523,7 +538,11 @@ div#footer-wrapper {
     div#wrapper {
         .background-size(auto, 88px);
         background-position:0 186px;
-        
+    
+        div#animation {
+            height:187px;
+        }    
+            
         div#header {
             .background-size(@pagewidth, 0.453*@pagewidth);
             min-height:45.3%;
@@ -627,6 +646,10 @@ div#footer-wrapper {
     
     div#wrapper {
         margin-top:38px;
+        
+        div#animation {
+            display:none;
+        }
         div#header {
             width:100%;
             height:80px;
