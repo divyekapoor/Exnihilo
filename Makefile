@@ -17,8 +17,9 @@ DIST_IMAGES=$(DIST_DIR)/images
 DIST_JS=$(DIST_DIR)/js
 
 
-.PHONY: dist debug clean all
+.PHONY: dist debug media clean all
 
+all: dist debug media zip
 
 debug: 
 	mkdir -p $(DEBUG_DIR)
@@ -64,8 +65,6 @@ dist:
 
 zip: dist
 	zip -9 -r exnihilo.zip dist
-
-all: debug dist zip
 
 clean:
 	rm -rf $(MEDIA_DIR)
