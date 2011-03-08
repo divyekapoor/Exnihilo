@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% block pre-head %}{% endblock pre-head %}
+
+{% block meta %}
+<!-- iPhone -->
+<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+{% endblock meta %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="all" />
+{% endblock css %}
+
+
+{% block favicon %}
+<link type="image/x-icon" href="favicon.ico" />
+{% endblock favicon %}
+
+
+{% block pre-js %}{% endblock pre-js %}
+
+{% block js %}
+<script src="{{ MEDIA_URL }}js/scripts.js" type="text/javascript"></script>
+{% endblock js %}
+
+{% block post-js %}{% endblock post-js %}
+
+<title>{{ title }} | Meister - The Adventure Machine</title>
+
+<!--[if lte IE 8] >
+    <script src="js/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+</head>
+<body>
+<!-- panel -->
+<div id="toppanel">
+    <div id="login">
+        <h1 class="logo">Lebensraum</h1>
+        
+        {% block login-form %}
+        {% if not user.is_authenticated %}
+        <form method="post" action="#">
+            <label class="label" for="username">Username: </label>
+            <input class="field" type="text"   name="username" />
+            <label class="label" for="password">Password: </label>
+            <input class="field" type="password" name="password" />
+            <input class="button login_button" type="submit" value="Login" />
+            <!-- a href="#">Forgot login credentials?</a -->
+            <input class="button register_button" type="submit" value="Register" />
+        </form>
+        {% else %}
+        <span class="greeting">Hi {{ user.get_full_name }}!</span>
+        {% endif %}
+        {% endblock login-form %}
+        
+        <div class="clear"></div>
+    </div>
+</div> <!-- /panel -->
+
+<div id="wrapper">
+
+    {% block animation %}
+        {% include "animation.html" %}
+    {% endblock animation %}
+    
+    
+    <div id="header">
+        {% block header %}
+        <a class="register" href="#">Register Now</a>
+        {% endblock header %}
+    </div>
+    <div id="content">
+        <div id="sidebar">
+            <ul class="nav">
+                {% block nav %}{% include "nav-default.html" %}{% endblock nav %}
+            </ul> <!-- /nav -->
+            {% block sidebar %}
+            {% include "tweet-default.html" %}
+            {% endblock sidebar %}
+        </div> <!-- /sidebar -->
+        
+        <div id="main">
+            {% block main %}
+            {% endblock main %}
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+</div>
+{% block footer %}
+<div id="footer-wrapper">
+    <div id="footer">
+        &copy; 2011 Sanat Rath and Divye Kapoor
+    </div>
+</div>
+{% endblock footer %}
+
+{% block body-scripts %}
+{% endblock body-scripts %}
+</body>
+</html>
