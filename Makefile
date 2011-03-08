@@ -19,7 +19,7 @@ DIST_JS=$(DIST_DIR)/js
 
 .PHONY: dist debug media clean all
 
-all: dist debug media zip
+all: dist debug media
 
 debug: 
 	mkdir -p $(DEBUG_DIR)
@@ -64,7 +64,7 @@ dist:
 
 
 zip: dist
-	zip -9 -r exnihilo.zip dist
+	zip -9 -r exnihilo.zip dist debug src exnihilo
 
 clean:
 	rm -rf $(MEDIA_DIR)
