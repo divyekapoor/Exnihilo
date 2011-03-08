@@ -5,4 +5,4 @@ debug/
 exnihilo.zip
 *.pyc
 *.pyo
-exnihilo/media/
+exnihilo/media/*
