@@ -6,3 +6,4 @@ exnihilo.zip
 *.pyc
 *.pyo
 exnihilo/media/*
+exnihilo/exnihilo.sqlite
