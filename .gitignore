@@ -3,3 +3,6 @@ cool_cram_base.html
 dist/
 debug/
 exnihilo.zip
+*.pyc
+*.pyo
+

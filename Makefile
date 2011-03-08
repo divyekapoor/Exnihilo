@@ -1,6 +1,7 @@
 SRC_DIR=src
 BIN_DIR=bin
 DEBUG_DIR=debug
+MEDIA_DIR=exnihilo/media
 
 SRC_CSS=$(SRC_DIR)/css
 SRC_IMAGES=$(SRC_DIR)/images
@@ -18,15 +19,23 @@ DIST_JS=$(DIST_DIR)/js
 
 .PHONY: dist debug clean all
 
-debug:
+
+debug: media
 	mkdir -p $(DEBUG_DIR)
 	cp -r $(SRC_CSS) $(DEBUG_CSS)
 	cp -r $(SRC_IMAGES) $(DEBUG_IMAGES)
 	cp -r $(SRC_JS) $(DEBUG_JS)
 	$(BIN_DIR)/preprocess.sh $(DEBUG_DIR) -DDEBUG
 
+media:
+	mkdir -p $(MEDIA_DIR)
+	cp -r $(SRC_CSS) $(MEDIA_DIR)
+	cp -r $(SRC_IMAGES) $(MEDIA_DIR)
+	cp -r $(SRC_JS) $(MEDIA_DIR)
+
 runserver: debug
 	xterm -e '/usr/bin/env node serve.js' &
+	xterm -e '/usr/bin/env python exnihilo/manage.py runserver' &
 
 dist: 
 	@@echo Creating $(DIST_DIR) $(DIST_CSS) $(DIST_JS)

@@ -1,0 +1,777 @@
+/* Variables: Colours and Constants */
+@gray:#A6A6A6;
+@lightgray:#2E2E2E;
+@darkblue:#002D3E;
+@lightblue:#00506B;
+@tweetblue:#0091BF;
+@bggray:#DDDDDD;
+@green:#748933;
+@yellow:#E7A423;
+@topheight:38px;
+@pagewidth:1000px;
+@sidebarwidth:278px;
+@contentheight:690px;
+
+// Mixins
+.exact {
+    margin:0 0;
+    padding:0 0;
+}
+
+.autocenter {
+    margin:0 auto;
+}
+
+.clear {
+    clear:both;
+}
+
+.pseudolink {
+    a {
+        text-decoration:none;
+        &:hover {
+            text-decoration:underline;
+        }
+    }
+}
+
+.background-size (@width, @height) {
+    -o-background-size: @width @height;
+    -moz-background-size: @width @height;
+    -webkit-background-size: @width @height;
+    background-size: @width @height;
+}
+
+.imp-background-size (@width, @height) {
+    background-size: @width @height !important;
+    -o-background-size: @width @height !important;
+    -moz-background-size: @width @height !important;
+    -webkit-background-size: @width @height !important;
+}
+
+// Nivo-Slider styles override
+.nivo-controlNav {
+	position:absolute;
+	right:10px;
+	top:-20px;
+}
+
+.nivo-controlNav a {
+	display:block;
+	width:22px;
+	height:22px;
+	background:url(../images/bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:3px;
+	float:left;
+}
+
+.nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+// --------------------------------------------------
+//    Main Styles
+// --------------------------------------------------
+body {
+    font-family:Aller,"Trebuchet MS";
+    font-size:12px;
+    
+    background-color:@bggray;
+}
+
+// CSS Structure
+div#toppanel {
+    height:@topheight;
+    width:100%;
+    background-color:black;
+    display:block;
+    
+    
+    div#login {
+        height:@topheight;
+        color:@gray;
+        .exact;
+        .autocenter;
+        
+        display:block;
+        
+        .logo {
+            background:url(../images/logo.png) no-repeat;
+            text-indent:-9999px;
+            min-width:145px;
+            height:@topheight;
+            float:left;
+        }
+
+        form {
+            float:right;
+            margin-right:10px;
+            
+            
+            .label {
+                color:@gray;
+                font-size:14px;
+                margin-right:7px;
+            }
+        
+            .field {
+                background-color:@lightgray;
+                border:none;
+                width:132px;
+                height:21px;
+                margin-top:7px;
+                margin-bottom:7px;
+                margin-right:15px;
+            }
+            .button {
+                width:55px;
+                height:20px;
+                border:none;
+                color:@gray;
+                background-image: url(../images/black_btn.png);
+                background-color:transparent;
+            }        
+            
+            .login_button {
+            }
+            
+            .register_button {
+            }
+            
+            a {
+                color:@gray;
+                &:hover {
+                    color:@lightgray;
+                }
+            }
+        }
+        
+    }
+}
+
+div#wrapper {
+    width:100%;
+    background:url(../images/header_x.png) @bggray 0 309px repeat-x;
+    background-color:transparent;
+    display:block;
+    margin-top:@topheight;
+    position:relative;
+    
+    div#animation {
+        width:100%;
+        z-index:1;
+        height:312px;
+        overflow:hidden;
+        position:absolute;
+    }
+    
+    div#header {
+        .exact;
+        .autocenter;
+        width:@pagewidth;
+        height:492px - 39px;
+        position:relative;
+        background:url(../images/header.png) no-repeat center;
+        background-color:transparent;
+        z-index:2;
+                    
+        a.register {
+            background-image:url(../images/registernow.png);
+            text-indent:-9999px;
+            position:absolute;
+            left:15.5%;
+            top:94%;
+            display:block;
+            height:22px;
+            width:109px;
+        }
+    }
+    
+    div#content {
+        .autocenter;
+        width:@pagewidth;
+        min-height:@contentheight;
+        
+        // Note: Apply faux repeat background for sidebar here.
+        // This is the standard trick for a 2 column layout.
+        background:url(../images/sidebar_y.jpg) 0 0 repeat-y;
+        background-color:@bggray;
+        
+        div#sidebar {
+            @sidebarpadding:42px;
+            
+            width:@sidebarwidth - @sidebarpadding;
+            min-height:500px; // troublesome rule. Try to remove
+            background-color:transparent;
+            float:left;
+            position:relative; // Establish a positioning context
+            padding-left:@sidebarpadding;
+            
+            .nav {
+                .exact;
+                margin-top:31px;
+                background-color:@darkblue;
+                a {
+                    color:white;
+                }
+                
+                .pseudolink;
+                
+                .item {
+                    @padTop:10px;
+                    .exact;
+                    height:59px-@padTop;
+                    display:block;
+                    background-color:@darkblue;
+                    
+                    padding-left:16px;
+                    padding-right:16px;
+                    padding-top:@padTop;
+                    
+                    color:white;
+                    .title {
+                        font-size:16px;
+                        font-weight:bold;
+                    }
+                    
+                    .blurb {
+                        font-size:12px;
+                    }
+                    
+                    dl:hover {
+                        color:@tweetblue;
+                    }
+                }
+                
+                .selected {
+                    background-color:@lightblue;
+                    
+                    dl:hover {
+                        color:inherit;
+                    }
+                }
+            }
+            
+            .tweet_wrapper {
+                .exact;
+                display:block;
+                height:270px;
+                width:100%;
+                background-image:url(../images/twitter.jpg);
+                background-repeat:no-repeat;
+                background-position:0 15px;
+                position:relative;
+                
+                a {
+                    color:@tweetblue;
+                }
+                
+                @boxwidth:165px;
+                .title {
+                    font-weight:bold;
+                    position:absolute;
+                    left:34px;
+                    top:42px;
+                    width:@boxwidth;
+                }
+                .tweet {
+                    font-style:italic;
+                    width:@boxwidth;
+                    position:absolute;
+                    left:34px;
+                    top:65px;
+                }
+            }
+        }
+        
+        div#main {
+            @paddingLeft:22px;
+            @paddingRight:40px;
+            
+            .exact;
+            min-height:@contentheight;
+            padding-left:@paddingLeft;
+            padding-right:@paddingRight;
+            background-color:white;
+            float:left;
+            
+            .title {
+                font-size:18px;
+                text-transform:uppercase;
+                color:@gray;
+                margin-bottom:12px;
+            }
+            
+            .emphasis {
+                font-weight:bold;
+            }
+            
+            div#top5 {
+                height:360px;
+                position:relative;
+                div#top5-slider-wrapper {
+                    .autocenter;
+                    width:660px;
+                    height:295px;
+                    
+                    div#top5-slider {
+                        .autocenter;
+                        width:100% !important;
+                        height:100% !important;
+                        .imp-background-size(100%, 100%);
+                        
+                        .nivo-slice {
+                            .imp-background-size(100%, 100%);
+                        }
+                        
+                    }
+                }                
+            }
+            
+            div#about {
+                @rightMargin:23px;
+                @width:300px;
+                
+                .exact;
+                float:left;
+                width:@width - @rightMargin;
+                padding-right:@rightMargin;
+                // min-height:274px;
+                
+                p {
+                    text-align:justify;
+                    color:@gray;
+                }
+                
+                .box {
+                    @height:25px;
+                    @pad:5px;
+                    width:135px;
+                    height:@height - 2*@pad;
+                    color:white;
+                    text-align:center;
+                    padding-top:@pad;
+                    padding-bottom:@pad;
+                    margin-top:12px;
+                                       
+                    .pseudolink;
+                    
+                    a {
+                        color:white;
+                    }                    
+                }
+                
+                .contest_details {
+                    .box;
+                    display:inline-block;
+                    background-color:@green;
+                }
+                
+                .contest_gallery {
+                    .box;
+                    display:inline-block;
+                    background-color:@yellow;
+                }
+            }
+            
+            div#recent {
+                float:left;
+                width:340px;
+                min-height:274px;
+                padding-left:9px;
+                border-left:solid 1px @gray;
+                
+                div#recent-images-wrapper {
+                    .exact;
+                    .autocenter;
+                    width:340px;
+                    height:227px;
+                    
+                    div#recent-images-slider {
+                        width:100% !important;
+                        height:100% !important;
+                        .exact;
+                        .autocenter;
+                        
+                        .imp-background-size(100%, 100%);
+                        .nivo-slice {
+                            .imp-background-size(100%, 100%);
+                        }
+                    }
+                }
+            }
+
+            
+        }
+
+    }    
+}
+
+div#footer-wrapper {
+    width:100%;
+    display:block;
+    .exact;
+    
+    background:url(../images/footer_x.jpg) 0 0 repeat-x;
+    background-color:@bggray;
+    div#footer {
+        @pad:12px;
+        .autocenter;
+        
+        width:@pagewidth;
+        background:url(../images/footer.jpg) no-repeat;
+        padding-top:@pad;
+        height:190px-@pad;
+        text-align:right;
+        
+        color:@gray;
+    } 
+
+}
+
+// ----------- End of Main Styles ----------------------
+
+@media screen and (min-width:600px) and (max-width:1000px) {
+    @pagewidth:700px;
+    
+    div#wrapper {
+        .background-size(auto, 115px);
+        background-position:0 249px;
+        
+        div#animation {
+            height:250px;
+        }
+        
+        div#header {
+            .background-size(@pagewidth, 363px);
+            min-height:45.3%;
+            height:363px;
+            width:@pagewidth;
+            display:block;
+            
+                
+            a.register {
+                width:70px;
+                height:15px;
+                .background-size(70px, auto);
+            }
+
+        }
+    
+        div#content {
+            width:@pagewidth;
+            
+            div#sidebar {
+    
+                width:100%;
+                height:30px;
+                min-height:20px;
+                display:block;
+                float:none;
+                margin:0 0 0 0;
+                padding: 0 0 0 0;
+                background-color:white;
+                
+                .nav {
+                    .exact;
+                    .item {
+                        display:inline-block;
+                        width:@pagewidth/5 - 14px;
+                        margin:0 0;
+                        height:20px;
+                        padding:5px 5px;
+                        text-align:center;
+                        
+                        .title {
+                            font-size:12px;
+                        }           
+                        .blurb {
+                            display:none;
+                        }
+                    }
+                }   
+                
+                .tweet_wrapper {
+                    display:none;
+                }
+            }
+            
+            div#main {
+                padding-right:20px;
+                padding-left:20px;
+            }
+        }
+
+    }
+    
+    
+    div#footer-wrapper {
+        .exact;
+        .background-size(auto, 129px);
+        height:141px;
+        
+        div#footer {
+            .background-size(auto, 129px);
+            width:@pagewidth;
+            height:129px;
+            .autocenter;
+        }
+    }
+}
+
+@media screen and (min-width:601px) and (max-width:700px) {
+    @pagewidth:600px;
+    
+    div#toppanel div#login {
+        form {
+            label {
+                font-size:10px;
+            }
+            
+            .field {
+                width:80px;
+            }
+        }
+    }
+    
+    div#wrapper {
+        .background-size(auto, 88px);
+        background-position:0 186px;
+    
+        div#animation {
+            height:187px;
+        }    
+            
+        div#header {
+            .background-size(@pagewidth, 0.453*@pagewidth);
+            min-height:45.3%;
+            height:0.453*@pagewidth;
+            width:@pagewidth;
+            display:block;            
+        }
+    
+        div#content {
+            width:@pagewidth;
+            
+            div#sidebar {
+                .nav {                
+                    .item {
+                        width:@pagewidth/5 - 14px;
+                        height:15px;
+                        text-align:center;
+                        
+                        .title {
+                            font-size:10px;
+                        }           
+                    }
+                }                   
+            }
+            
+            div#main {
+                div#top5 {
+                    height:291px;
+                    div#top5-slider-wrapper {
+                        width:550px;
+                        height:246px;
+                    }
+                }
+                
+                div#about {
+                    width:100%;
+                    height:auto;
+                    display:block;
+                    float:none;
+                    
+                    .contest_details, .contest_gallery {
+                        display:none;
+                    }
+                }
+                
+                div#recent {
+                    .exact;
+                    border:none;
+                    margin-top:20px;
+                    margin-bottom:20px;
+                    display:block;
+                    float:none;
+                    div#recent-images-wrapper {
+                        width:550px;
+                        height:246px;
+                    }
+                }
+            }
+        }
+
+    }
+    
+    
+    div#footer-wrapper {
+        .exact;
+        .background-size(auto, 114px);
+        height:114px;
+        
+        div#footer {
+            .background-size(@pagewidth, auto);
+            width:@pagewidth;
+            height:102px;
+            .autocenter;
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+    
+    body {
+        font-size:12px;
+    }
+    
+    div#toppanel {
+        .logo {
+        }
+        div#login {
+            form{
+                .label {
+                    display:none;
+                }
+                .field {
+                    display:none;
+                }
+            }
+        }
+    }
+    
+    div#wrapper {
+        margin-top:38px;
+        
+        div#animation {
+            display:none;
+        }
+        div#header {
+            width:100%;
+            height:80px;
+            background-image:url(../images/header-small.png);
+            .background-size(auto, 60px);
+            background-position:center;
+            background-color:#111;
+            
+            a.register {
+                display:none;
+            }
+        }
+        
+        div#content {
+            width:100%;
+            .exact;
+            div#sidebar {
+                .exact;
+                width:100%;
+                min-height:20px;
+                height:auto;
+                display:block;
+                float:none;
+                background-color:white;
+                .nav {
+                    .exact;
+                    width:100%;
+                    display:block;
+                    background-color:#111;
+                    padding-bottom:5px;
+                    .item {
+                        overflow:hidden;
+                        .exact;
+                        text-align:center;
+                        position:relative;
+                        width:29%;
+                        min-height:45px;
+                        height:auto;
+                        padding:5px 5px;
+                        margin-top:5px;
+                        display:inline-block;
+                        .title {
+                            font-size:14px;
+                            margin: 0 auto;
+                            display:block;
+                        }
+                        
+                        .blurb {
+                            display:none;
+                        }
+                    }
+                    
+                    .selected {
+                    }
+                }
+                
+                .tweet_wrapper {
+                    display:none;
+                }
+            }
+            
+            div#main {
+                .exact;
+                min-height:0px;
+                div#top5 {
+                    padding:0 0;
+                    margin:10px 0 0 0;
+                    width:100%;
+                    height:100%;
+                    display:inline-block;
+                    
+                    div#top5-slider-wrapper {
+                        width:300px;
+                        height:175px;
+                    }
+                }
+                
+                div#about {
+                    .exact;
+                    width:94%;
+                    margin-top:10px;
+                    margin-bottom:10px;
+                    padding:0 5px;
+                    float:none;
+                    display:block;
+                    
+                    
+                    .contest_details {
+                        margin-left:10px;
+                    }
+                    
+                }
+                
+                div#recent {
+                    .exact;
+                    width:94%;
+                    min-height:0;
+                    height:225px;
+                    padding:0 5px;
+                    div#recent-images-wrapper {
+                        width:300px;
+                        height:175px;
+                    }
+                    
+                }
+            }
+        }
+    }
+    div#footer-wrapper {
+        .exact;
+        width:100%;
+        height:30px;
+        div#footer {
+            .exact;
+            width:100%;
+            height:30px;
+            background-image:none;
+        }
+    }
+}
+
+@media screen and (max-width:399px) {
+    div#wrapper div#content div#main div#about,
+    div#wrapper div#content div#main div#recent {
+        padding:0 0 0 2px;
+    }
+}
