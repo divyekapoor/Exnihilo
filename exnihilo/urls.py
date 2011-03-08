@@ -18,5 +18,6 @@ urlpatterns = patterns('',
     (r'^contest/', include('exnihilo.contest.urls')),
     
     # Use django.contrib.auth for login management
+    (r'^accounts/signup/', include('exnihilo.signup.urls')),
     (r'^accounts/', include('django.contrib.auth.urls')),
 )

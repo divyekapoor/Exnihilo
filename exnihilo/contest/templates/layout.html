@@ -40,15 +40,21 @@
         <h1 class="logo">Lebensraum</h1>
         
         {% block login-form %}
+        {% if form.errors %}
+        <script type="text/javascript">
+        alert("Your login failed. Please try again");
+        </script>
+        {% endif %}
         {% if not user.is_authenticated %}
-        <form method="post" action="#">
+        <form method="post" action="{% url django.contrib.auth.views.login %}">
+            {% csrf_token %}
             <label class="label" for="username">Username: </label>
             <input class="field" type="text"   name="username" />
             <label class="label" for="password">Password: </label>
             <input class="field" type="password" name="password" />
             <input class="button login_button" type="submit" value="Login" />
             <!-- a href="#">Forgot login credentials?</a -->
-            <input class="button register_button" type="submit" value="Register" />
+            <a class="button register_button" href="{% url signup.views.signup }">Register</a>
         </form>
         {% else %}
         <span class="greeting">Hi {{ user.get_full_name }}!</span>
