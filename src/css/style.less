@@ -462,6 +462,8 @@ div#footer-wrapper {
     
         div#content {
             width:@pagewidth;
+            background-image:none;
+            background-color:white;
             
             div#sidebar {
     
@@ -501,6 +503,7 @@ div#footer-wrapper {
             div#main {
                 padding-right:20px;
                 padding-left:20px;
+                width:660px;
             }
         }
 
@@ -570,6 +573,8 @@ div#footer-wrapper {
             }
             
             div#main {
+                width:@pagewidth - 40px; // for padding of 20px on each side
+                
                 div#top5 {
                     height:291px;
                     div#top5-slider-wrapper {
