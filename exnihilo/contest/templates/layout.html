@@ -54,7 +54,7 @@
             <input class="field" type="password" name="password" />
             <input class="button login_button" type="submit" value="Login" />
             <!-- a href="#">Forgot login credentials?</a -->
-            <a class="button register_button" href="{% url signup.views.signup }">Register</a>
+            <input class="button register_button" type="submit" value="Register" />
         </form>
         {% else %}
         <span class="greeting">Hi {{ user.get_full_name }}!</span>
