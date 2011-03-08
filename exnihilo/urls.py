@@ -13,4 +13,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    
+    # Contest url files
+    (r'^contest/', include('exnihilo.contest.urls')),
+    
+    # Use django.contrib.auth for login management
+    (r'^accounts/', include('django.contrib.auth.urls')),
 )
