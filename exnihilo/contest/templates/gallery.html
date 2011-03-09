@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block post-css %}
+<style type="text/css">
+.gallery_wrapper {
+    width:98%;
+}
+
+.photo-wrapper {
+    width:150px;
+    height:150px;
+    padding:5px 5px;
+    display:inline-block;
+    background-image:url({{ MEDIA_URL }}images/gallery-photo-bg.jpg);
+    background-repeat:none;
+}
+.photo {
+    width:135px;
+    height:95px;
+    display:block;
+}
+</style>
+{% endblock %}
+
+{% block main %}
+<h1 class="title">Gallery</h1>
+<div class="gallery-wrapper">
+    <ul class="photo-list">
+        <li class="photo-wrapper">
+            <img class="photo" src="" alt="photo" />
+            <div class="blurb">
+                <div class="ratings"></div>
+                <div class="views">467</div>
+                <div class="author">By Divye Kapoor</div>
+            </div>
+        </li>
+    </ul>
+</div>
+{% endblock %}
