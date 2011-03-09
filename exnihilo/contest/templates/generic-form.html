@@ -1,17 +1,21 @@
 {% extends "layout.html" %}
 
-{% block title %}Login{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {# Style the content #}
 {% block post-css %}
 <style type="text/css">
 .column {
-    width:300px;
+    width:100%;
+    min-width:300px;
     padding-bottom:10px;
 }
+.column form {
+    margin:0 0;
+    padding:0 0;
+}
 .form_box {
-    width:300px;
-    height:175px;
+    width:100%;
     border:solid 1px #333333;
     padding: 0px 0 5px 0;
 
@@ -63,14 +67,10 @@
 </style>
 {% endblock %}
 
-{# Get Rid of login form at the beginning of the page #}
-{% block login-form %}
-{% endblock %}
-
 {% block main %}
 
 <div class="autocenter column">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form_box">
         <h1 class="form_title">{% block form-title %}{{ title }}{% endblock %}</h1>
@@ -78,9 +78,10 @@
             {{ form.as_table }}
             <tr>
                 <td> </td>
-                <td class="submit_row"><input type="submit" class="black_button submit_button" value="Login" /> <input type="reset" class="black_button reset_button" value="Reset" /></td>
+                <td class="submit_row"><input type="submit" class="black_button submit_button" value="Submit" /> <input type="reset" class="black_button reset_button" value="Reset" /></td>
             </tr>
         </table>
+        {% block extra-content %}{% endblock %}
     </div>
     </form>
 </div> <!-- /autocenter -->
