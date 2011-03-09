@@ -19,5 +19,7 @@ urlpatterns = patterns('',
     
     # Use django.contrib.auth for login management
     (r'^accounts/signup/', include('exnihilo.signup.urls')),
+    (r'^accounts/edit/$', 'exnihilo.signup.views.edit'),
+    (r'^accounts/profile/(?:([a-zA-Z0-9@\.+\-_]+)/)?$', 'exnihilo.signup.views.profile'),
     (r'^accounts/', include('django.contrib.auth.urls')),
 )

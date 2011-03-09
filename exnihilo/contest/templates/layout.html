@@ -61,7 +61,7 @@
             <input type="hidden" name="next" value="{{ next }}" />
         </form>
         {% else %}
-        <span class="greeting">Hi {{ user.get_full_name }}!</span>
+        <div class="greeting">Hi {{ user.get_full_name }}!</div>
         {% endif %}
         {% endblock login-form %}
         

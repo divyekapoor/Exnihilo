@@ -61,6 +61,9 @@
     margin-bottom:5px;
     margin-top:10px;
 }
+
+{% block extra-css %}{% endblock %}
+
 </style>
 {% endblock %}
 
@@ -71,25 +74,12 @@
 {% block main %}
 
 <div class="autocenter column">
-    {% if form.errors %}
-    <div class="login_errors">
-    {{ form.errors }}
-    </div>
-    {% endif %}
-
     <form action="" method="post">
     {% csrf_token %}
     <div class="login_box">
         <h1 class="login">Login</h1>
         <table class="exact autocenter login_fields">
-            <tr>
-                <td>{{ form.username.label }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
+            {{ form.as_table }}
             <tr>
                 <td> </td>
                 <td class="submit_row"><input type="submit" class="black_button submit_button" value="Login" /> <input type="reset" class="black_button reset_button" value="Reset" /></td>
