@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+
+<h1 class="name">{{ p_user.get_full_name }}</h1>
+<img class="profile_pic" src="{{ p_user.get_profile.pic.url }}" alt="{{ p_user.get_full_name }}" />
+<div class="blurb">{{ p_user.get_profile.blurb }}</div>
+
+{% endblock %}
