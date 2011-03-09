@@ -1,0 +1,48 @@
+{% extends "registration/login.html" %}
+{% block extra-css %}
+.login_box {
+    height:auto;
+    overflow:hidden; /* Needed as the default widget cannot be resized */
+}
+
+.login_fields {
+    margin-left:5px;
+}
+
+.login_fields th {
+    width:20%;
+}
+
+#id_about_me {
+    width:300px;
+    height:75px;
+}
+
+.column, .login_box {
+    width:100%;
+}
+
+.saved {
+    border:solid 1px green;
+    background-color:yellow;
+}
+{% endblock %}
+
+{% block main %}
+<div class="autocenter column">
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="login_box">
+        <h1 class="login">Register</h1>
+        {% if is_saved %}<div class="saved">Data saved successfully!</div>{% endif %}
+        <table class="exact autocenter login_fields">
+            {{ form.as_table }}
+            <tr>
+                <td> </td>
+                <td class="submit_row"><input type="submit" class="black_button submit_button" value="Register" /> <input type="reset" class="black_button reset_button" value="Reset" /></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div> <!-- /autocenter -->
+{% endblock %}

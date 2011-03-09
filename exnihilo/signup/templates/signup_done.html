@@ -1,0 +1,20 @@
+{% extends "message.html" %}
+
+{% block extra-css %}
+.text p {
+    margin-bottom:10px;
+}
+{% endblock %}
+
+{% block msg-title %}
+Signup Successful
+{% endblock %}
+{% block msg-text %}
+<p>We're so happy that you've decided to join us!</p>
+<p>Head over to the <a href="{% url contest.views.gallery %}">gallery</a> to check out your competition! Or, if you're raring 
+to go, dash over to the <a href="{% url contest.views.submit %}">submit page</a> to upload your entry. I'm sure you must have
+had a wonderful time with the Meister.</p>
+<p>With Love and Regards,<br />
+The Meister Team
+</p>
+{% endblock %}
