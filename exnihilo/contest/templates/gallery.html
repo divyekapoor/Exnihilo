@@ -44,14 +44,26 @@
 <div class="gallery-wrapper">
     <h1 class="title">Gallery</h1>
     <ul class="photo-list">
+        {% for photo in photo_list %}
         <li class="photo-wrapper">
-            <img class="photo" src="" alt="photo" />
+            <img class="photo" src="{{ photo.image.url }}" alt="{{ photo.blurb }}" />
             <div class="blurb">
-                <div class="ratings"></div>
+                <div class="ratings">
+                    <input type="radio" name="rating" class="star" value="1" />
+                    <input type="radio" name="rating" class="star" value="2" />
+                    <input type="radio" name="rating" class="star" value="3" />
+                    <input type="radio" name="rating" class="star" value="4" />
+                    <input type="radio" name="rating" class="star" value="5" />
+                </div>
                 <div class="views">467</div>
-                <div class="author">By <span class="author-name">Divye Kapoor</span></div>
+                <div class="author">By <span class="author-name">{{ photo.author }}</span></div>
             </div>
         </li>
+        {% empty %}
+        <li class="error">There are no photos in the gallery.</li>
+        {% endfor %}
     </ul>
+    
+    <a href="{% url contest.views.submit %}">Submit Contest Entry</a>
 </div>
 {% endblock %}
