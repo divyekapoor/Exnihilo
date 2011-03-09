@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock %}
+
+{# Style the content #}
+{% block post-css %}
+<style type="text/css">
+.column {
+    width:300px;
+    padding-bottom:10px;
+}
+.form_box {
+    width:300px;
+    height:175px;
+    border:solid 1px #333333;
+    padding: 0px 0 5px 0;
+
+    color:white;    
+    font-size:14px;
+    background-color:#FEFFBF;
+    background-color:#00506B;
+    background-color:#002D3E;
+}
+.form_title {
+    background-color:black;
+    padding:5px 0 5px 0px;
+    font-size:18px;
+    text-indent:10px;
+}
+.submit_button, .reset_button {
+    font-size:12px;
+}
+
+.submit_row {
+    padding-top:15px;
+}
+.form_fields {
+    margin-top:20px;
+    width:80%;
+}
+
+.form_fields td {
+    padding: 5px 5px 5px 5px;
+}
+
+.error {
+    text-align:center;
+    color:white;
+    text-decoration:underline;
+    margin-top:5px;
+}
+
+.form_errors {
+    border:solid 1px red;
+    color: red;
+    width:300px;
+    margin-bottom:5px;
+    margin-top:10px;
+}
+
+{% block extra-css %}{% endblock %}
+
+</style>
+{% endblock %}
+
+{# Get Rid of login form at the beginning of the page #}
+{% block login-form %}
+{% endblock %}
+
+{% block main %}
+
+<div class="autocenter column">
+    <form action="" method="post">
+    {% csrf_token %}
+    <div class="form_box">
+        <h1 class="form_title">{% block form-title %}{{ title }}{% endblock %}</h1>
+        <table class="exact autocenter form_fields">
+            {{ form.as_table }}
+            <tr>
+                <td> </td>
+                <td class="submit_row"><input type="submit" class="black_button submit_button" value="Login" /> <input type="reset" class="black_button reset_button" value="Reset" /></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div> <!-- /autocenter -->
+{% endblock %}
