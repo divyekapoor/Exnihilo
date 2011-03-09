@@ -4,7 +4,9 @@ import views
 urlpatterns = patterns('',
 
     # Contest url files
-    (r'^(?:index.html)?$', views.index),
+    (r'^$', views.index),
     (r'^gallery/', views.gallery),
-    (r'^submit/', views.submit)
+    (r'^submit/', views.submit),
+    (r'^details/', views.details)
+    
 )
