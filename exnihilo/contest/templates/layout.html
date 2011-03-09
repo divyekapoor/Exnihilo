@@ -8,10 +8,13 @@
 <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 {% endblock meta %}
 
+{% block pre-css %}{% endblock pre-css %}
+
 {% block css %}
 <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="all" />
 {% endblock css %}
 
+{% block post-css %}{% endblock post-css %}
 
 {% block favicon %}
 <link type="image/x-icon" href="favicon.ico" />
@@ -48,13 +51,14 @@
         {% if not user.is_authenticated %}
         <form method="post" action="{% url django.contrib.auth.views.login %}">
             {% csrf_token %}
-            <label class="label" for="username">Username: </label>
-            <input class="field" type="text"   name="username" />
-            <label class="label" for="password">Password: </label>
-            <input class="field" type="password" name="password" />
+            <label class="label" for="id_username">Username: </label>
+            <input class="field" id="id_username" type="text"   name="username" />
+            <label class="label" for="id_password">Password: </label>
+            <input class="field" id="id_password" type="password" name="password" />
             <input class="button login_button" type="submit" value="Login" />
             <!-- a href="#">Forgot login credentials?</a -->
             <input class="button register_button" type="submit" value="Register" />
+            <input type="hidden" name="next" value="{{ next }}" />
         </form>
         {% else %}
         <span class="greeting">Hi {{ user.get_full_name }}!</span>
