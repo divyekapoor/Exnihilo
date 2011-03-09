@@ -10,9 +10,21 @@
 @topheight:38px;
 @pagewidth:1000px;
 @sidebarwidth:278px;
-@contentheight:690px;
 
-// Mixins
+
+// --------------------------------------------------
+//    Main Styles
+// --------------------------------------------------
+body {
+    font-family:Aller,"Trebuchet MS";
+    font-size:12px;
+    
+    background-color:@bggray;
+}
+
+// --------------------------------------------------
+//      Mixins
+// --------------------------------------------------
 .exact {
     margin:0 0;
     padding:0 0;
@@ -26,6 +38,20 @@
     clear:both;
 }
 
+// Django form errors
+.error {
+    color:red;
+}
+
+.errorlist {
+    color:red;
+    li {
+        list-style:disc outside none;
+        margin-left:20px;
+        margin-bottom:5px;
+    }
+}
+
 .pseudolink {
     a {
         text-decoration:none;
@@ -34,6 +60,16 @@
         }
     }
 }
+
+.black_button {
+    width:55px;
+    height:20px;
+    border:none;
+    color:@gray;
+    background-image: url(../images/black_btn.png);
+    background-color:transparent;
+}    
+
 
 .background-size (@width, @height) {
     -o-background-size: @width @height;
@@ -49,7 +85,10 @@
     -webkit-background-size: @width @height !important;
 }
 
+
+// -------------------------------------------------
 // Nivo-Slider styles override
+// -------------------------------------------------
 .nivo-controlNav {
 	position:absolute;
 	right:10px;
@@ -71,15 +110,7 @@
 	background-position:0 -22px;
 }
 
-// --------------------------------------------------
-//    Main Styles
-// --------------------------------------------------
-body {
-    font-family:Aller,"Trebuchet MS";
-    font-size:12px;
-    
-    background-color:@bggray;
-}
+
 
 // CSS Structure
 div#toppanel {
@@ -126,12 +157,7 @@ div#toppanel {
                 margin-right:15px;
             }
             .button {
-                width:55px;
-                height:20px;
-                border:none;
-                color:@gray;
-                background-image: url(../images/black_btn.png);
-                background-color:transparent;
+                .black_button;
             }        
             
             .login_button {
@@ -192,18 +218,11 @@ div#wrapper {
     div#content {
         .autocenter;
         width:@pagewidth;
-        min-height:@contentheight;
-        
-        // Note: Apply faux repeat background for sidebar here.
-        // This is the standard trick for a 2 column layout.
-        background:url(../images/sidebar_y.jpg) 0 0 repeat-y;
-        background-color:@bggray;
         
         div#sidebar {
             @sidebarpadding:42px;
             
             width:@sidebarwidth - @sidebarpadding;
-            min-height:500px; // troublesome rule. Try to remove
             background-color:transparent;
             float:left;
             position:relative; // Establish a positioning context
@@ -290,7 +309,6 @@ div#wrapper {
             @paddingLeft:22px;
             @paddingRight:40px;
             .exact;
-            min-height:@contentheight;
             padding-left:@paddingLeft;
             padding-right:@paddingRight;
             background-color:white;
@@ -433,7 +451,27 @@ div#footer-wrapper {
 
 // ----------- End of Main Styles ----------------------
 
-@media screen and (min-width:600px) and (max-width:1000px) {
+@media screen and (min-width:1000px) {
+    @contentheight:690px;
+    div#wrapper div#content {
+            min-height:@contentheight;
+            
+            // Note: Apply faux repeat background for sidebar here.
+            // This is the standard trick for a 2 column layout.
+            background:url(../images/sidebar_y.jpg) 0 0 repeat-y;
+            background-color:@bggray;
+            
+            div#sidebar {
+                min-height:500px;
+            }
+            
+            div#main {
+                min-height:@contentheight;
+            }
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:999px) {
     @pagewidth:700px;
     
     div#wrapper {
@@ -469,7 +507,7 @@ div#footer-wrapper {
     
                 width:100%;
                 height:30px;
-                min-height:20px;
+                // min-height:20px;
                 display:block;
                 float:none;
                 margin:0 0 0 0;
@@ -718,6 +756,7 @@ div#footer-wrapper {
             
             div#main {
                 .exact;
+                width:100%;
                 min-height:0px;
                 div#top5 {
                     padding:0 0;
