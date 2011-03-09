@@ -7,31 +7,49 @@
 }
 
 .photo-wrapper {
-    width:150px;
-    height:150px;
-    padding:5px 5px;
+    width:154px;
+    height:155px;
     display:inline-block;
     background-image:url({{ MEDIA_URL }}images/gallery-photo-bg.jpg);
     background-repeat:none;
 }
 .photo {
-    width:135px;
+    width:136px;
     height:95px;
     display:block;
+    margin:8px 8px 8px 8px;
+}
+.ratings {
+    float:left;
+    width:88px;
+    height:15px;
+}
+.views {
+    float:right;
+    margin-right:10px;
+}
+.author {
+    clear:both;
+    margin-left:8px;
+    margin-right:8px;
+}
+
+.author-name {
+    font-weight:bold;
 }
 </style>
 {% endblock %}
 
 {% block main %}
-<h1 class="title">Gallery</h1>
 <div class="gallery-wrapper">
+    <h1 class="title">Gallery</h1>
     <ul class="photo-list">
         <li class="photo-wrapper">
             <img class="photo" src="" alt="photo" />
             <div class="blurb">
                 <div class="ratings"></div>
                 <div class="views">467</div>
-                <div class="author">By Divye Kapoor</div>
+                <div class="author">By <span class="author-name">Divye Kapoor</span></div>
             </div>
         </li>
     </ul>
