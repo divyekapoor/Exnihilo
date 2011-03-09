@@ -3,11 +3,15 @@
 {# Style the content #}
 {% block post-css %}
 <style type="text/css">
+.column {
+    width:300px;
+    padding-bottom:10px;
+}
 .login_box {
     width:300px;
     height:175px;
     border:solid 1px #333333;
-    padding: 5px 5px 5px 5px;
+    padding: 0px 0 5px 0;
 
     color:white;    
     font-size:14px;
@@ -17,8 +21,9 @@
 }
 .login {
     background-color:black;
-    padding:5px 0 5px 15px;
+    padding:5px 0 5px 0px;
     font-size:18px;
+    text-indent:10px;
 }
 .submit_button, .reset_button {
     font-size:12px;
@@ -63,31 +68,32 @@
 
 {% block main %}
 
-{% if form.errors %}
-<div class="login_errors">
-{{ form.errors }}
-</div>
-{% endif %}
+<div class="autocenter column">
+    {% if form.errors %}
+    <div class="login_errors">
+    {{ form.errors }}
+    </div>
+    {% endif %}
 
-<form action="" method="post">
-{% csrf_token %}
-<div class="login_box">
-    <h1 class="login">Login</h1>
-    <table class="exact autocenter login_fields">
-        <tr>
-            <td>{{ form.username.label }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td class="submit_row"><input type="submit" class="black_button submit_button" value="Login" /> <input type="reset" class="black_button reset_button" value="Reset" /></td>
-        </tr>
-    </table>
-</div>
-</form>
-
+    <form action="" method="post">
+    {% csrf_token %}
+    <div class="login_box">
+        <h1 class="login">Login</h1>
+        <table class="exact autocenter login_fields">
+            <tr>
+                <td>{{ form.username.label }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td class="submit_row"><input type="submit" class="black_button submit_button" value="Login" /> <input type="reset" class="black_button reset_button" value="Reset" /></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div> <!-- /autocenter -->
 {% endblock %}
