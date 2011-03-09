@@ -1,0 +1,7 @@
+{% extends "message.html" %}
+
+{% block msg-title %}Edit Successful{% endblock %}
+{% block msg-text %}You've successfully edited your profile information. Now,
+why don't you see how it's looking at 
+<a href="{% url signup.views.profile user.username %}">{% url signup.views.profile user.username %}</a>
+{% endblock %}

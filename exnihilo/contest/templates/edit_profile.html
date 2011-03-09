@@ -1,0 +1,25 @@
+{% extends "generic-form.html" %}
+{% block extra-css %}
+.form_fields {
+    margin:5px 5px;
+    width:95%;
+}
+#id_about_me {
+    margin:0 0;
+    padding:0 0;
+    width:180px;
+    height:80px;
+}
+
+@media screen and (min-width:301px) {
+    .column {
+        width:100%;
+    }
+
+}
+{% endblock %}
+
+
+{% block extra-content %}
+<p>Change your password <a href="{% url signup.views.edit_password %}">here</a>.</p>
+{% endblock %}

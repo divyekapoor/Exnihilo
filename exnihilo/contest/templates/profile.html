@@ -1,10 +1,16 @@
 {% extends "layout.html" %}
+{% block post-css %}
+<style type="text/css">
+
+</style>
+{% endblock %}
 
 {% block main %}
 
 
-<h1 class="name">{{ p_user.get_full_name }}</h1>
+<h1 class="title">{{ p_user.get_full_name }}</h1>
 <img class="profile_pic" src="{{ p_user.get_profile.pic.url }}" alt="{{ p_user.get_full_name }}" />
-<div class="blurb">{{ p_user.get_profile.blurb }}</div>
+<div class="about_me">{{ p_user.get_profile.about_me }}</div>
+<a class="edit" href="{% url signup.views.edit_profile %}">Edit Profile</a>
 
 {% endblock %}

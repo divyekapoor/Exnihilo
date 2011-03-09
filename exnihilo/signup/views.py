@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 
 from exnihilo.signup.forms import UserProfileCreationForm, UserProfileModelForm
 
@@ -45,20 +46,38 @@ def profile(request, user_name):
         
 # TODO
 @login_required    
-def edit(request):
+def edit_profile(request):
     """
         Edit the profile of the currently logged in user
     """
-    ctx = {'title' : 'Edit Profile', 'form' : None, 'is_saved' : False}
+    ctx = {'title' : 'Edit Profile', 'form' : None}
     if request.method == "POST":
-        form = UserProfileModelForm(request.POST, instance=request.user.get_profile())
+        form = UserProfileModelForm(request.POST, instance=request.user)
         ctx["form"] = form
         if form.is_valid():
-            form.save()
-            ctx["is_saved"] = True
+            changed_user = form.save()
+            return render_to_response('edit_done.html', ctx, context_instance=RequestContext(request))
     else:
-        form = UserProfileModelForm(instance=request.user.get_profile())
+        form = UserProfileModelForm(instance=request.user)
         ctx["form"] = form
         
-    return render_to_response('signup.html', ctx, context_instance=RequestContext(request))
+    # FIXME: Fix about_me not coming on the prompt to edit the profile
+    return render_to_response('edit_profile.html', ctx, context_instance=RequestContext(request))
     
+@login_required
+def edit_password(request):
+    """
+        The user can change his/her password from this view.
+    """
+    ctx = {'title':'Change Password', 'form': None}
+    form = None
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            changed_user = form.save()
+            return render_to_response('edit_done.html', ctx, context_instance=RequestContext(request))
+    else:
+        form = PasswordChangeForm(request.user)
+    
+    ctx['form'] = form
+    return render_to_response('generic-form.html', ctx, context_instance=RequestContext(request))
