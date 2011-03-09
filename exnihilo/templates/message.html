@@ -1,0 +1,22 @@
+{% block post-css %}
+<style type="text/css">
+.message {
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.message .text {
+    color:#333333;
+}
+
+.message a {
+    color: #00506B;
+}
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="message">
+    <h1 class="title">{% block msg-title %}{{ msg_title }}{% endblock %}</h1>
+    <div class="text">{% block msg-text %}{{ msg_text }}{% endblock %}</div>
+</div>
+{% endblock %}
