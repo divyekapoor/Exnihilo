@@ -1,0 +1,34 @@
+<script type="text/javascript">        
+    $('.ratings a').live('click', function(eventObj) {
+        var value = $(this).attr('title'); // Rating value
+        if(value === "Cancel Rating") {
+            value = "0";
+        }
+
+        $(this).parents('form').map(function() {
+            // Make an AJAX query to server
+            $.ajax({
+                'url' : $(this).attr('action') + value + '/', 
+                'type' : 'GET',
+                'complete' : function(res, status) {
+                    if(console) {
+                        console.log(status);
+                        console.log(res);
+                    }
+                    msg = $.parseJSON(res.responseText);
+                    if(status !== "success" && status !== "notmodified") {
+                        alert(msg.message);
+                        window.location.href = "{% url django.contrib.auth.views.login %}?next={% url contest.views.gallery %}";
+                    } else {
+                        $('#r' + msg.id).html(msg.rating);
+                        $('#v' + msg.id).html(msg.votes);
+                    }
+                    
+                }
+            });
+            
+        });
+    });
+    
+    
+</script>
