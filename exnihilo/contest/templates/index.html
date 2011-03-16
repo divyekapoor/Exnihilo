@@ -4,10 +4,9 @@
                 <h1 class="title">Top 5 Contest Entries</h1>
                 <div id="top5-slider-wrapper">
                     <div id="top5-slider" class="nivoSlider">
-                        <img src="{{ MEDIA_URL}}images/toystory.jpg" alt="" />
-                        <a href="http://dev7studios.com"><img src="{{ MEDIA_URL}}images/up.jpg" alt="" title="This is an example of a caption" /></a>
-                        <img src="{{ MEDIA_URL}}images/walle.jpg" alt="" />
-                        <img src="{{ MEDIA_URL}}images/nemo.jpg" alt="" title="#htmlcaption" />
+                        {% for photo in top5 %}
+                        <a href="{% url contest.views.photo_detail photo.id %}"><img src="{{ photo.image.url }}" alt="{{ photo.blurb }}" title="{{ photo.blurb }} -- By {{ photo.author.get_full_name }}" /></a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -22,10 +21,9 @@
                 <h1 class="title">Recent Entries</h1>
                 <div id="recent-images-wrapper">
                     <div id="recent-images-slider" class="nivoSlider">
-                        <img src="{{ MEDIA_URL}}images/toystory.jpg" alt="" />
-                        <a href="http://dev7studios.com"><img src="{{ MEDIA_URL}}images/up.jpg" alt="" title="This is an example of a caption" /></a>
-                        <img src="{{ MEDIA_URL}}images/walle.jpg" alt="" />
-                        <img src="{{ MEDIA_URL}}images/nemo.jpg" alt="" title="#htmlcaption" />                    
+                        {% for photo in recent %}
+                        <a href="{% url contest.views.photo_detail photo.id %}"><img src="{{ photo.image.url }}" alt="{{ photo.blurb }}" title="{{ photo.blurb }} -- By {{ photo.author.get_full_name }}"/></a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -37,5 +35,9 @@
         $('#top5-slider').nivoSlider({effect: 'fade'});
         $('#recent-images-slider').nivoSlider({effect:'fade'});
     });
+    
+    $(document).ready(function() {
+        $('#item-home').addClass('selected');
+    })
 </script>
 {% endblock body-scripts %}
