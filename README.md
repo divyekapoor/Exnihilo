@@ -26,6 +26,10 @@ To see how the site performs:
     3. Install sqlite3 (if not present)
         sudo apt-get install sqlite3
 
+    4. Create a local database copy
+        cd exnihilo
+        ./manage.py syncdb
+
     4. Run the development server
         make runserver
 
