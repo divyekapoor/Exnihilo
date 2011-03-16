@@ -45,13 +45,13 @@ Note: a sample httpd.conf and exnihilo/apache/django.wsgi is supplied for produc
 
 
 
-Tech Used
-=========
+Listing of Tech Used for the Contest
+===================================
 
 Adobe Photoshop
 Adobe Illustrator
 Adobe After Effects CS4
-Adobe Dreamweaver
+Adobe Dreamweaver CS5 (media query and multiscreen preview features)
 
 AJAX
 YUI-reset
