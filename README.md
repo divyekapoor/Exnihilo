@@ -29,6 +29,8 @@ To see how the site performs:
     4. Run the development server
         make runserver
 
+    5. View the site at http://localhost:8000/
+
 Note: a sample httpd.conf and exnihilo/apache/django.wsgi is supplied for production mode.
 
 
