@@ -74,6 +74,7 @@
     {% csrf_token %}
     <div class="form_box">
         <h1 class="form_title">{% block form-title %}{{ title }}{% endblock %}</h1>
+        {% block pre-extra-content %}{% endblock %}
         <table class="exact autocenter form_fields">
             {{ form.as_table }}
             <tr>
