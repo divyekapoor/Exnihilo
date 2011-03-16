@@ -1,16 +1,202 @@
 {% extends "layout.html" %}
 {% block post-css %}
 <style type="text/css">
+/* START gallery.html CSS styles */
+.gallery_wrapper {
+    width:98%;
+}
 
+.photo-wrapper {
+    width:154px;
+    height:155px;
+    display:inline-block;
+    background-image:url({{ MEDIA_URL }}images/gallery-photo-bg.jpg);
+    background-repeat:no-repeat;
+}
+.photo-box {
+    width:136px;
+    height:96px;
+    overflow:hidden;
+    background-color:white;
+    margin:8px 8px 8px 8px;
+}
+.photo {
+    /* max-width:136px; */
+    max-height:95px;
+    display:block;
+    margin:0 auto;
+}
+.ratings {
+    float:left;
+    width:110px;
+    height:15px;
+}
+.views {
+    float:right;
+    margin-right:10px;
+}
+.author {
+    clear:both;
+    margin-left:8px;
+    margin-right:8px;
+}
+.author-name {
+    font-weight:bold;
+}
+.photo-wrapper a {
+    text-decoration:none;
+    border:none;
+}
+
+.photo-wrapper a:hover {
+    text-decoration:none;
+    border:none;
+}
+.share-buttons {
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.rating-cancel {
+    display:none !important;
+}
+.rating-form {
+    margin-left:8px !important;
+}
+/* END gallery.html CSS styles */
+
+div#main h2.title {
+    font-size:14px !important;
+    text-transform:capitalize !important;
+    font-weight:bold;
+}
+.form_box {
+    background-color:white;
+    border:none;
+}
+.profile-pic-wrapper {
+    margin:0 0;
+    padding:0 0;
+    max-width:100%;
+}
+.profile-pic {
+    min-width:200px;
+    max-width:25%;
+    border:solid 5px #DDD;
+    float:left;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+.about-me-wrapper {
+    margin-top:15px;
+}
+.about_me {
+    margin:5px 5px 5px 5px;
+}
+.personal-details-wrapper {
+    margin-left:10px;
+    display:inline;
+}
+.personal-details {
+    color:#333;
+}
+.personal-details table td {
+    padding-left:15px;
+}
+@media screen and (max-width:599px){
+.profile-pic {
+    max-width:95%;
+    margin:0 0;
+    padding:0 0;
+}
+.personal-details-wrapper {
+    margin: 0 0;
+    padding: 0 0;
+}
+}
 </style>
 {% endblock %}
 
 {% block main %}
 
+<div class="profile-wrapper">
+    <div class="title">{{ p_user.get_full_name }}</div>
+    {% if user == p_user %}
+        <a class="edit-profile" href="{% url signup.views.edit_profile %}">Edit Profile</a>
+        <div class="submit-entry"><a href="{% url contest.views.submit %}">Submit Contest Entry</a></div>
+    {% endif %}
+    
+    <div class="profile-pic-wrapper">
+        <img class="profile-pic" src="{{ p_user.get_profile.pic.url }}" alt="{{ p_user.get_full_name }}" />
+        <div class="personal-details-wrapper">
+            <h2 class="title">Personal Details</h2>
+            <div class="personal-details">
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td>{{ p_user.username }}</td>
+                </tr>
 
-<h1 class="title">{{ p_user.get_full_name }}</h1>
-<img class="profile_pic" src="{{ p_user.get_profile.pic.url }}" alt="{{ p_user.get_full_name }}" />
-<div class="about_me">{{ p_user.get_profile.about_me }}</div>
-<a class="edit" href="{% url signup.views.edit_profile %}">Edit Profile</a>
+                <tr>
+                    <td>First Name</td>
+                    <td>{{ p_user.first_name }}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>{{ p_user.last_name }}</td>
+                </tr>
+            </table>
+            </div>
+            <div class="about-me-wrapper">
+                <h2 class="title">About Me</a></h2>
+                <div class="about_me">{{ p_user.get_profile.about_me }}</div>
+            </div>
+            <div class="clear"></div>
+            {% load ratings %}
+            <div class="gallery-wrapper">
+                <h2 class="title">My Submissions</h1>
+                <ul class="photo-list">
+                    {% for photo in my_photo_list %}
+                    <li class="photo-wrapper">
+                        <div class="photo-box">
+                        <a href="{% url contest.views.photo_detail photo.id %}"><img class="photo" src="{{ photo.image.url }}" alt="{{ photo.blurb }}" /></a>
+                        </div>
+                        <div class="blurb">
+                            <!-- div class="ratings">
+                                {% rating_by_request request on photo.rating as vote %}
+                                <form class="rating-form" action="/contest/rate/{{ photo.id }}/">
+                                    <input type="radio" name="rating_{{ photo.id }}" class="star" value="1" {% if vote == 1 %}checked="checked"{% endif %} />
+                                    <input type="radio" name="rating_{{ photo.id }}" class="star" value="2" {% if vote == 2 %}checked="checked"{% endif %} />
+                                    <input type="radio" name="rating_{{ photo.id }}" class="star" value="3" {% if vote == 3 %}checked="checked"{% endif %} />
+                                    <input type="radio" name="rating_{{ photo.id }}" class="star" value="4" {% if vote == 4 %}checked="checked"{% endif %} />
+                                    <input type="radio" name="rating_{{ photo.id }}" class="star" value="5" {% if vote == 5 %}checked="checked"{% endif %} />
+                                </form>
+                            </div>
+                            <div class="views"><span class="r{{ photo.id}}">{{ photo.rating.get_rating }}</span> (<span class="v{{ photo.id }}">{{ photo.rating.votes }}</span>)</div>
+                            <div class="author">By <span class="author-name">{{ photo.author }}</span></div-->
+                            <div class="center"><a href="{% url contest.views.photo_detail photo.id %}">View Submission</a></div>
+                        </div>
+                    </li>
+                    {% empty %}
+                    <li class="error">You have not submitted any entries. Please <a href="{% url contest.views.submit %}">submit some</a>!</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
+
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block body-scripts %}
+{% include "rating-script-default.html" %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#item-profile').addClass('selected');
+});
+</script>
 {% endblock %}
