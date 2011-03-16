@@ -20,6 +20,21 @@ body {
     font-size:12px;
     
     background-color:@bggray;
+    
+    dl, dt, dd, form {
+        margin:0 0;
+        padding:0 0;
+    }
+    
+
+    
+    a {
+        color:@darkblue;
+        &:hover {
+            color:@tweetblue;
+        }
+    }
+
 }
 
 // --------------------------------------------------
@@ -32,6 +47,10 @@ body {
 
 .autocenter {
     margin:0 auto;
+}
+
+.center {
+    text-align:center;
 }
 
 .clear {
@@ -65,6 +84,21 @@ body {
     background-color:transparent;
 }    
 
+.edit-profile {
+    display:inline-block;
+    width:100px;
+    height:30px;
+    text-indent:-9999px;
+    background-image:url(../images/editprofile.png);
+}
+
+.submit-entry {
+    display:inline-block;
+    width:100px;
+    height:30px;
+    text-indent:-9999px;
+    background-image:url(../images/submitentry.png);
+}
 
 .background-size (@width, @height) {
     -o-background-size: @width @height;
@@ -109,14 +143,14 @@ body {
 
 // CSS Structure
 div#toppanel {
-    height:@topheight;
+    min-height:@topheight;
     width:100%;
     background-color:black;
     display:block;
     
     
     div#login {
-        height:@topheight;
+        min-height:@topheight;
         color:@gray;
         .exact;
         .autocenter;
@@ -172,6 +206,18 @@ div#toppanel {
             }
             
             .register_button {
+                display:inline-block;
+                text-decoration:none;
+                padding-left: 5px;
+                padding-top: 3px;
+                text-decoration: none;
+                width: 50px;
+                height:17px;
+                
+                &:hover {
+                    text-decoration:none;
+                    color:@bggray;
+                }
             }
             
             a {
@@ -190,7 +236,6 @@ div#wrapper {
     background:url(../images/header_x.png) @bggray 0 309px repeat-x;
     background-color:transparent;
     display:block;
-    margin-top:@topheight;
     position:relative;
     
     div#animation {
@@ -242,6 +287,11 @@ div#wrapper {
                 background-color:@darkblue;
                 a {
                     color:white;
+                    text-decoration:none;
+                    
+                    &:hover {
+                        text-decoration:none;
+                    }
                 }
                 
                 .pseudolink;
@@ -267,8 +317,8 @@ div#wrapper {
                         font-size:12px;
                     }
                     
-                    dl:hover {
-                        color:@tweetblue;
+                    &:hover, dl:hover {
+                        background-color:#00465E;
                     }
                 }
                 
@@ -346,10 +396,10 @@ div#wrapper {
                         .autocenter;
                         width:100% !important;
                         height:100% !important;
-                        .imp-background-size(100%, 100%);
+                        .imp-background-size(100%, auto);
                         
                         .nivo-slice {
-                            .imp-background-size(100%, 100%);
+                            .imp-background-size(100%, auto);
                         }
                         
                     }
@@ -405,7 +455,7 @@ div#wrapper {
             div#recent {
                 float:left;
                 width:340px;
-                min-height:274px;
+                min-height:250px;
                 padding-left:9px;
                 border-left:solid 1px @gray;
                 
@@ -413,7 +463,7 @@ div#wrapper {
                     .exact;
                     .autocenter;
                     width:340px;
-                    height:227px;
+                    height:152px;
                     
                     div#recent-images-slider {
                         width:100% !important;
@@ -421,9 +471,9 @@ div#wrapper {
                         .exact;
                         .autocenter;
                         
-                        .imp-background-size(100%, 100%);
+                        .imp-background-size(auto, 100%);
                         .nivo-slice {
-                            .imp-background-size(100%, 100%);
+                            .imp-background-size(auto, 100%);
                         }
                     }
                 }
@@ -526,7 +576,7 @@ div#footer-wrapper {
                     .exact;
                     .item {
                         display:inline-block;
-                        width:@pagewidth/5 - 14px;
+                        width:@pagewidth/6 - 14px;
                         margin:0 0;
                         height:20px;
                         padding:5px 5px;
@@ -607,7 +657,7 @@ div#footer-wrapper {
             div#sidebar {
                 .nav {                
                     .item {
-                        width:@pagewidth/5 - 14px;
+                        width:@pagewidth/6 - 14px;
                         height:15px;
                         text-align:center;
                         
@@ -690,11 +740,14 @@ div#footer-wrapper {
                     display:none;
                 }
             }
+            .greeting {
+                font-size:12px;
+                display:inline;
+            }
         }
     }
     
     div#wrapper {
-        margin-top:38px;
         
         div#animation {
             display:none;
@@ -738,10 +791,15 @@ div#footer-wrapper {
                         position:relative;
                         width:29%;
                         min-height:45px;
-                        height:auto;
-                        padding:5px 5px;
+                        height:45px;
+                        padding:1% 1%;
                         margin-top:5px;
                         display:inline-block;
+                        
+                        dl, dd, dt {
+                            .exact;
+                        }
+                        
                         .title {
                             font-size:14px;
                             margin: 0 auto;
