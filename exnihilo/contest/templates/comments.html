@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block post-css %}
+<style type="text/css">
+.photo-detail {
+    width:100%;
+    margin:0 0;
+    padding:0 0;
+}
+.rating-form:after {
+    content:".";
+    clear:both;
+}
+.photo-img {
+    max-width:100%;
+}
+.info {
+    color:white;
+    background-color:#002D3E;    
+}
+.info form {
+    float:left;
+    padding:5px 5px;
+}
+.author-info {
+    font-weight:bold;
+    text-align:right;
+    padding:5px 5px;
+}
+.blurb {
+    padding:5px 5px;
+}
+.comments {
+    background-color:#00506B;
+    border:solid 1px #333333;
+    padding:5px 5px;
+    color:#CCCCCC;
+}
+.num_comments {
+    text-align:right;
+}
+#comments dd {
+    border-bottom:solid 1px #EEE;
+    margin:5px 0;
+    padding:5px 0;
+}
+#id_name, #id_email, #id_url {
+    display:none;
+}
+label[for="id_name"], label[for="id_email"], label[for="id_url"] {
+    display:none;
+}
+#main {
+    padding-bottom:15px !important;
+}
+
+label[for="id_comment"] {
+    display:block;
+}
+#id_comment {
+    width:100%;
+}
+.submit-preview {
+    display:none;
+}
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="photo-detail-wrapper">
+    <h1 class="title">Photo Details</h1>
+    <div class="photo-detail">
+        <div class="photo">
+            <img class="photo-img" src="{{ photo.image.url }}" alt="{{ photo.blurb }}" />
+        </div>
+        <div class="info">
+            {% load ratings %}
+            {% rating_by_request request on photo.rating as vote %}
+            <div class="ratings">
+            <form class="rating-form" action="/contest/rate/{{ photo.id }}/">
+                <input type="radio" name="rating_{{ photo.id }}" class="star" value="1" {% if vote == 1 %}checked="checked"{% endif %} />
+                <input type="radio" name="rating_{{ photo.id }}" class="star" value="2" {% if vote == 2 %}checked="checked"{% endif %} />
+                <input type="radio" name="rating_{{ photo.id }}" class="star" value="3" {% if vote == 3 %}checked="checked"{% endif %} />
+                <input type="radio" name="rating_{{ photo.id }}" class="star" value="4" {% if vote == 4 %}checked="checked"{% endif %} />
+                <input type="radio" name="rating_{{ photo.id }}" class="star" value="5" {% if vote == 5 %}checked="checked"{% endif %} />
+            </form>
+            </div>
+            <div class="author-info">By <span class="author">{{ photo.author.get_full_name }}</span></div>
+            <div class="blurb">{{ photo.blurb }}</div>
+            
+            <!-- Facebook and Twitter buttons -->
+            <!-- iframe src="http://www.facebook.com/plugins/like.php?href={{ submission_url }}&amp;layout=button_count&amp;show_faces=false&amp;width=120&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;" allowTransparency="true"></iframe>
+            <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="divyekapoor">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script -->
+
+        </div>
+        
+        {% load comments %}
+        {% get_comment_count for photo as comment_count %}
+        <div class="comments">
+            <p class="num_comments">Number of comments: <span class="comment_count">{{ comment_count }}</span></p>
+            {% render_comment_list for photo %}
+            {% if user.is_authenticated %}
+                {% render_comment_form for photo %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body-scripts %}
+{% include "rating-script-default.html" %}
+<script type="text/javascript">
+$(document).ready(function() {
+    // Set the values for the commenter
+    $("#id_name").attr('value', '{{ user.get_full_name }}');
+    $("#id_email").attr('value', '{{ user.email }}');
+    $("#id_url").attr('value', 'http://sanatrath.com')
+    $('<input type="hidden" name="next" value="{% url contest.views.photo_detail photo.id %}">').appendTo('.comments form');
+}); 
+</script>
+
+{% endblock %}
