@@ -52,7 +52,8 @@
             <input class="field" id="id_password" type="password" name="password" />
             <input class="button login_button" type="submit" value="Login" />
             <!-- a href="#">Forgot login credentials?</a -->
-            <input class="button register_button" type="submit" value="Register" />
+            <!-- input class="button register_button" type="submit" value="Register" / -->
+            <a href="{% url signup.views.signup %}"class="button register_button">Register</a>
             <input type="hidden" name="next" value="{{ next }}" />
         </form>
         {% else %}
@@ -65,6 +66,7 @@
         
         <div class="clear"></div>
     </div>
+    <div class="clear"></div>
 </div> <!-- /panel -->
 
 <div id="wrapper">
@@ -107,6 +109,14 @@
 </div>
 {% endblock footer %}
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.register_button').submit(function() {
+        window.location.href="{% url signup.views.signup %}";
+        return false;
+    });
+})
+</script>
 {% block body-scripts %}
 {% endblock body-scripts %}
 </body>

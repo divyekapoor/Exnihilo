@@ -1,10 +1,28 @@
 {% extends "message.html" %}
-
+{% block extra-css %}
+#main p {
+    margin-bottom:8px;
+}
+{% endblock %}
 {% block msg-title %}Submission Successful{% endblock %}
 {% block msg-text %}
 <p>Thanks for uploading your submission. Now make sure you share 
 the url <a href="{{ submission_url }}">{{ submission_url }}</a> with your 
 friends so that they can rate the image and help make you win!</p>
-<p>You can use <a href="http://www.facebook.com">Facebook</a> or 
-<a href="http://twitter.com">Twitter</a> to help you do this.</p>
+<p>You can use <a href="http://www.facebook.com" target="_blank">Facebook</a> or 
+<a href="http://twitter.com" target="_blank">Twitter</a> to help you do this.</p>
+<p>Move on to the <a href="{% url contest.views.gallery %}">Contest Gallery</a> to see the images uploaded by other contestants or <a href="{% url contest.views.submit %}">submit another image</a> yourself!</p>
+
+<!-- Facebook and Twitter buttons -->
+<iframe src="http://www.facebook.com/plugins/like.php?href={{ submission_url }}&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="divyekapoor">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+{% endblock %}
+
+{% block body-scripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#item-submit').addClass('selected');
+});
+</script>
 {% endblock %}

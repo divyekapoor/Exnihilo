@@ -8,6 +8,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 
 from exnihilo.signup.forms import UserProfileCreationForm, UserProfileModelForm
 
+from exnihilo.contest.models import Photo
+
 def signup(request):
     ctx = { 'title' : 'Signup', 'form' : None}
     
@@ -31,14 +33,16 @@ def profile(request, user_name):
     """
         Returns a profile page for the logged in User (or other User if username provided)
     """
-    ctx = {'title':None,'p_user':None} # puser - User object of the requested profile
+    ctx = {'title':None,'p_user':None, 'my_photo_list':None} # puser - User object of the requested profile
     if user_name is None or user_name == "":
         if request.user.is_authenticated():
             ctx['p_user'] = request.user
+            ctx['my_photo_list'] = Photo.objects.filter(author=request.user)
         else:
             return HttpResponseNotFound("The user profile that you've requested does not exist.")
     else:
         ctx['p_user'] = get_object_or_404(User, username=user_name)
+        ctx['my_photo_list'] = Photo.objects.filter(author=ctx['p_user'])
 
     ctx['title'] = ctx['p_user'].get_full_name()
     return render_to_response('profile.html', ctx, context_instance=RequestContext(request))
@@ -61,7 +65,6 @@ def edit_profile(request):
         form = UserProfileModelForm(instance=request.user)
         ctx["form"] = form
         
-    # FIXME: Fix about_me not coming on the prompt to edit the profile
     return render_to_response('edit_profile.html', ctx, context_instance=RequestContext(request))
     
 @login_required
