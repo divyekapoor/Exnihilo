@@ -102,16 +102,16 @@ Version: 1.0
 .tab a:hover.close {background: url(../images/slide/bt_close.png) no-repeat left -19px;}
 
 /* sliding panel */
-#toppanel {
-    position: absolute;   /*Panel will overlap  content */
-    /*position: relative;*/   /*Panel will "push" the content down */
+/* #toppanel {
+    position: absolute;   Panel will overlap  content 
+    /*position: relative;*/   /*Panel will "push" the content down 
     top: 0;left:0;
     width: 100%;
     z-index: 999;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-}
+}*/
 
 #panel {
 	width: 100%;
