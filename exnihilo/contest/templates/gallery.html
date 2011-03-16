@@ -11,17 +11,24 @@
     height:155px;
     display:inline-block;
     background-image:url({{ MEDIA_URL }}images/gallery-photo-bg.jpg);
-    background-repeat:none;
+    background-repeat:no-repeat;
+}
+.photo-box {
+    width:136px;
+    height:96px;
+    overflow:hidden;
+    background-color:white;
+    margin:8px 8px 8px 8px;
 }
 .photo {
-    width:136px;
-    height:95px;
+    /* max-width:136px; */
+    max-height:95px;
     display:block;
-    margin:8px 8px 8px 8px;
+    margin:0 auto;
 }
 .ratings {
     float:left;
-    width:88px;
+    width:110px;
     height:15px;
 }
 .views {
@@ -33,9 +40,28 @@
     margin-left:8px;
     margin-right:8px;
 }
-
 .author-name {
     font-weight:bold;
+}
+.photo-wrapper a {
+    text-decoration:none;
+    border:none;
+}
+
+.photo-wrapper a:hover {
+    text-decoration:none;
+    border:none;
+}
+.share-buttons {
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.rating-cancel {
+    display:none !important;
+}
+.rating-form {
+    margin-left:8px !important;
 }
 </style>
 {% endblock %}
@@ -44,26 +70,80 @@
 <div class="gallery-wrapper">
     <h1 class="title">Gallery</h1>
     <ul class="photo-list">
+        {% load ratings %}
         {% for photo in photo_list %}
         <li class="photo-wrapper">
-            <img class="photo" src="{{ photo.image.url }}" alt="{{ photo.blurb }}" />
+            <div class="photo-box">
+            <a href="{% url contest.views.photo_detail photo.id %}"><img class="photo" src="{{ photo.image.url }}" alt="{{ photo.blurb }}" /></a>
+            </div>
             <div class="blurb">
                 <div class="ratings">
-                    <input type="radio" name="rating" class="star" value="1" />
-                    <input type="radio" name="rating" class="star" value="2" />
-                    <input type="radio" name="rating" class="star" value="3" />
-                    <input type="radio" name="rating" class="star" value="4" />
-                    <input type="radio" name="rating" class="star" value="5" />
+                    {% rating_by_request request on photo.rating as vote %}
+                    <form id="rating-form-{{ photo.id }}" class="rating-form" action="/contest/rate/{{ photo.id }}/">
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="1" {% if vote == 1 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="2" {% if vote == 2 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="3" {% if vote == 3 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="4" {% if vote == 4 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="5" {% if vote == 5 %}checked="checked"{% endif %} />
+                    </form>
                 </div>
-                <div class="views">467</div>
+                <div class="views"><span id="r{{ photo.id }}">{{ photo.rating.get_rating }}</span> (<span id="v{{ photo.id }}">{{ photo.rating.votes }}</span>)</div>
                 <div class="author">By <span class="author-name">{{ photo.author }}</span></div>
             </div>
         </li>
         {% empty %}
-        <li class="error">There are no photos in the gallery.</li>
+        <li class="error">There are no photos in the gallery. Please <a href="{% url contest.views.submit %}">submit some</a>!</li>
         {% endfor %}
     </ul>
-    
-    <a href="{% url contest.views.submit %}">Submit Contest Entry</a>
 </div>
+
+<!-- Facebook and Twitter buttons -->
+<!-- div class="share-buttons">
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="divyekapoor">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<iframe src="http://www.facebook.com/plugins/like.php?href=http://localhost/contest/gallery/&amp;layout=button_count&amp;show_faces=false&amp;width=120&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;" allowTransparency="true"></iframe>
+</div -->
+
+<hr />
+{% if user.is_authenticated %}
+<div class="gallery-wrapper">
+    <h1 class="title">My Submissions</h1>
+    <ul class="photo-list">
+        {% for photo in my_photo_list %}
+        <li class="photo-wrapper">
+            <div class="photo-box">
+            <a href="{% url contest.views.photo_detail photo.id %}"><img class="photo" src="{{ photo.image.url }}" alt="{{ photo.blurb }}" /></a>
+            </div>
+            <div class="blurb">
+                <!-- div class="ratings">
+                    {% rating_by_request request on photo.rating as vote %}
+                    <form id="my-rating-form-{{ photo.id }}" class="rating-form" action="/contest/rate/{{ photo.id }}/">
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="1" {% if vote == 1 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="2" {% if vote == 2 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="3" {% if vote == 3 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="4" {% if vote == 4 %}checked="checked"{% endif %} />
+                        <input type="radio" name="rating_{{ photo.id }}" class="star" value="5" {% if vote == 5 %}checked="checked"{% endif %} />
+                    </form>
+                </div>
+                <div class="views"><span id="m_r{{ photo.id }}">{{ photo.rating.get_rating }}</span> (<span id='m_v{{ photo.id }}'>{{ photo.rating.votes }}</span>)</div>
+                <div class="author" style="display:none">By <span class="author-name">{{ photo.author }}</span></div>
+            </div -->
+        </li>
+        {% empty %}
+        <li class="error">You have not submitted any entries. Please <a href="{% url contest.views.submit %}">submit some</a>!</li>
+        {% endfor %}
+    </ul>
+    <div class="button"><a href="{% url contest.views.submit %}">Submit Contest Entry</a></div>
+
+
+</div>
+{% endif %}
+{% endblock %}
+
+{% block body-scripts %}
+{% include "rating-script-default.html" %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#item-gallery').addClass('selected');
+});
+</script>
 {% endblock %}
