@@ -1,12 +1,12 @@
-<li class="item selected">
+<li id="item-home" class="item">
     <a href="{% url contest.views.index %}">
     <dl>
-        <dd class="title">Lebensraum Meister</dd>
+        <dd class="title">Contest Home</dd>
         <dt class="blurb">Your partner in adventure</dt>
     </dl>
     </a>
 </li>
-<li class="item">
+<li id='item-details' class="item">
     <a href="{% url contest.views.details %}">
     <dl>
         <dd class="title">Contest Details</dd>
@@ -14,7 +14,7 @@
     </dl>
     </a>
 </li>
-<li class="item">
+<li id='item-gallery' class="item">
     <a href="{% url contest.views.gallery %}">
     <dl>
         <dd class="title">Contest Gallery</dd>
@@ -22,18 +22,28 @@
     </dl>
     </a>
 </li>
-<li class="item">
+<li id='item-submit' class="item">
     <a href="{% url contest.views.submit %}">
     <dl>
-        <dd class="title">Submit Your Entry</dd>
+        <dd class="title">Submit Entry</dd>
         <dt class="blurb">Share your experience with us</dt>
     </dl>
     </a>
 </li>
+{% if user.is_authenticated %}
+<li id='item-profile' class="item">
+    <a href="{% url signup.views.profile %}">
+        <dl>
+            <dd class="title">Profile Page</dd>
+            <dt class="blurb">See how you appear to the world</dt>
+        </dl>
+    </a>
+</li>
+{% endif %}
 <li class="item">
     <a href="http://lebensraum.com/">
     <dl>
-        <dd class="title">Lebensraum Home</dd>
+        <dd class="title">Lebensraum</dd>
         <dt class="blurb">Engineering Personified</dt>
     </dl>
     </a>
