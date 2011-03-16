@@ -2,7 +2,7 @@ SRC_DIR=src
 BIN_DIR=bin
 DEBUG_DIR=debug
 MEDIA_DIR=exnihilo/media
-
+ADMIN_MEDIA_DIR=/usr/share/pyshared/django/contrib/admin/media 
 SRC_CSS=$(SRC_DIR)/css
 SRC_IMAGES=$(SRC_DIR)/images
 SRC_JS=$(SRC_DIR)/js
@@ -48,7 +48,7 @@ dist:
 	@@cp -r $(SRC_IMAGES) $(DIST_IMAGES)
 	
 	@@echo Operating less.js on .less files
-	@@$(BIN_DIR)/lessc $(SRC_CSS)/style.less > $(DIST_CSS)/style.less.css
+	$(BIN_DIR)/lessc $(SRC_CSS)/style.less > $(DIST_CSS)/style.less.css
 	@@echo Creating unified and minified CSS in $(DIST_CSS)/style.min.css
 	@@cat $(SRC_CSS)/reset.css $(SRC_CSS)/nivo-slider.css $(SRC_CSS)/slide.css $(SRC_CSS)/animation.css $(SRC_CSS)/star.css $(DIST_CSS)/style.less.css > $(DIST_CSS)/style.css
 	@@yui-compressor --type css $(DIST_DIR)/css/style.css -o $(DIST_DIR)/css/style.min.css
@@ -59,6 +59,9 @@ dist:
 	
 	@@echo Preprocessing and copying HTML files...
 	@@$(BIN_DIR)/preprocess.sh $(DIST_DIR) -DRELEASE
+
+	@@echo Copying Media files from admin
+	cp -r $(ADMIN_MEDIA_DIR) $(MEDIA_DIR)
 	
 	@@echo Done.
 
