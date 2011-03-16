@@ -4,18 +4,32 @@
 
 {# Style the content #}
 {% block extra-css %}
-
+.register-blurb {
+    text-align:right;
+    padding:5px;
+}
+.register-blurb a {
+    text-decoration:underline;
+    color:#00506B;
+}
+.register-blurb a:hover {
+    text-decoration:none;
+    color:#0091BF;
+}
 #id_username, #id_password {
     width:140px;
 }
 
 .form_box {
-    height:175px;
+    min-height:175px;
 }
 {% endblock %}
 
-{# Get Rid of login form at the beginning of the page #}
-{% block login-form %}
-{% endblock %}
 
 {% block form-title %}Login{% endblock %}
+
+{% block extra-content %}
+<div class="register-blurb">
+<p>Haven't registered yet? <a href="{% url signup.views.signup %}">Register now!</a></p>
+</div>
+{% endblock %}
