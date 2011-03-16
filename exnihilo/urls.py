@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     
     # Contest url files
     (r'^contest/', include('exnihilo.contest.urls')),
+    (r'^$', 'exnihilo.contest.views.index_redirect'),
     
     # Use django.contrib.auth for login management
     (r'^accounts/signup/', include('exnihilo.signup.urls')),
