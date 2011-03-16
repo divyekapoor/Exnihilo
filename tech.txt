@@ -1,0 +1,21 @@
+Adobe:--
+Photoshop
+Illustrator
+After Effects
+Dreamweaver
+
+AJAX
+YUI-reset
+YUI-compressor
+node.js
+less.js
+node-static
+jquery and libraries
+CSS3
+HTML5
+python
+WSGI
+django
+make
+gcc
+git
