@@ -14,6 +14,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+SITE_ROOT = 'http://localhost' # Without trailing slash
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -60,7 +62,7 @@ MEDIA_URL = 'http://localhost:8080/exnihilo/media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = 'http://localhost:8080/exnihilo/media/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '41o^s6$p#()-z^8f7)xzu1(p(odui(8+dq6*71idk%w34k0ak1'
@@ -98,8 +100,26 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.comments',
     'exnihilo.contest',
     'exnihilo.signup',
+    'djangoratings',
 )
 
 AUTH_PROFILE_MODULE = 'signup.UserProfile'
+
+#-------------------- Production settings
+# MEDIA_URL = 'http://172.17.1.120:8080/exnihilo/media/'
+# SITE_ROOT = 'http://172.17.1.120' # Without trailing slash
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'exnihilo',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': 'beanstalk',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+
