@@ -16,24 +16,30 @@ Usage
 To see how the site performs:
 
     1. Install Python Prerequisites 
+        sudo apt-get install python-django
         sudo easy_install djangoratings
         sudo easy_install simplejson
 
-    2. Install Server Side Javascript Prerequisites
-        sudo apt-get install node (or alternatively, get node.js from github and follow the instructions)
-        sudo apt-get install npm (or alternatively, install npm from github)
+    1. Install Server Side Javascript Prerequisites
+        sudo apt-get install nodejs (or alternatively, get node.js from github and follow the instructions)
+        Install `npm` from http://github.com/isaacs/npm
+        sudo npm install node-static
 
-    3. Install sqlite3 (if not present)
+    1. Install yui-compressor to minimize CSS and JS
+        sudo apt-get install yui-compressor
+
+    1. Install sqlite3 (if not present)
         sudo apt-get install sqlite3
 
-    4. Create a local database copy
+    1. Create a local database copy
         cd exnihilo
         ./manage.py syncdb
+        cd ..
 
-    4. Run the development server
+    1. Run the development server
         make runserver
 
-    5. View the site at http://localhost:8000/
+    1. View the site at http://localhost:8000/
 
 Note: a sample httpd.conf and exnihilo/apache/django.wsgi is supplied for production mode.
 
