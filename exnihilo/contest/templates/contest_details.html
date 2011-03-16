@@ -1,13 +1,71 @@
 {% extends "layout.html" %}
-
+{% block post-css %}
+<style type="text/css">
+.simple-steps {
+    float:left;
+    padding-right:10px;
+}
+</style>
+{% endblock %}
 {% block main %}
-<div class="contest_details">
-    <h1 class="title">Contest Details</h1>
-    <div class="details">These are some sample details</div>
-</div>
+<img src="{{ MEDIA_URL }}images/simplesteps.jpg" class="simple-steps" alt="3 simple steps" />
+<h1 class="title">Legal:</h1>
+Lebensraum Meister AdventureUS Photo Contest begins March 1, 2011 and ends December 1, 2011, at 2:00 PM Indian Standard Time (IST). By submitting an entry, each contestant agrees to the rules of the contest.
 
-<div class="contest_rules">
-    <h1 class="title">Contest Rules</h1>
-    <div class="rules">These are some sample rules.</div>
-</div>
+<h1 class="title">Who may enter:</h1> 
+Photographers of any ageexcept for individuals affiliated with the Lebensraum Automanufacture, including employees, emeriti, Regents, trustees, interns, volunteers, fellows, research associates and their immediate families (children, siblings and spouses) and others living in their householdsare eligible. The Judges will determine winners eligibility.
+
+<h1 class="title">What to enter:</h1>
+<p>
+Photographs must have been shot by the entrant since January 1, 2009.
+Cropped photos are eligible in all categories. We do not accept digitally or otherwise enhanced or altered photos, except for those entered in the Altered Images category. Minor adjustments, including spotting, dodging and burning, sharpening, contrast and slight color adjustment or the digital equivalents, are acceptable for all categories. If our judges determine that a photographer has altered his or her photo, they reserve the right to move the photo to Altered Images or to disqualify it.
+</p>
+
+<p>
+For a photo in which a person is recognizable, you must secure a model release from the subject or, in the case of a minor, the subjects parent or guardian and provide it to the contest upon request.
+Photographs that have won any other contests or have been published in magazines and newspapers (except online) are not eligible. We define winning as having won a grand prize or 1st, 2nd, or 3rd place overall. Photos that violate or infringe upon another persons rights, including but not limited to copyright, are not eligible.
+</p>
+
+<h1 class="title">How to enter:</h1>
+<p>
+Please submit photographs on-line through our web site at www.adventure.us. We do not accept photographs submitted through the mail. Submit no more than seven (7) photographs per profile. We do not accept more than one contestant per e-mail address.
+</p>
+
+<p>
+High-quality scans of non-digital photographs are acceptable. Digital photographs should be taken at the highest resolution possible. Use the on-line entry form on our website. Complete a separate form for each photo submitted. Photographs must be in a .jpeg, .jpg or .gif format. Files submitted may not be larger than 2,048k (2Mb). 
+By entering the contest, entrants grant Lebensraum a royalty-free, worldwide, perpetual, non-exclusive license to display, distribute, reproduce and create derivative works of the entries, in whole or in part, in any media now existing or subsequently developed, for any educational, promotional, publicity, exhibition, archival, scholarly and all other standard purposes. Any photograph reproduced will include a photographer credit as feasible. Lebensraum will not be required to pay any additional consideration or seek any additional approval in connection with such uses.
+</p>
+
+<h1 class="title">Entry deadline: </h1>
+<p>
+Voting closes on December 1, 2011.
+</p>
+
+<h1 class="title">Judging:</h1>
+<p>
+Judging will be conducted by the editors of  by voting of registered users. Winning photographs and selected finalists will be notified in website as well as personal emails. Decisions of the voting will be final. Unfair means in voting, if suspected, shall be penalised by suspension of entries.
+Please do not contact us about the status of entries.
+</p>
+
+<h1 class="title">Prizes:</h1>
+
+<h2 class="title">Grand Prize: </h2>
+<p>
+A Lebensraum Journeys trip to Yosemite National Park, or the wholesale cash equivalent (approx. $3,000).
+</p>
+
+<h2 class="title">Leading Winners:</h2>
+<p>
+The next 4 leading entries will receive $500 each.
+Winners may receive additional noncash prizes.
+Winners must sign an affidavit and license and will be responsible for paying any taxes they may owe on a prize.
+</p>
+{% endblock %}
+
+{% block body-scripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#item-details').addClass('selected');
+});
+</script>
 {% endblock %}
